@@ -1,0 +1,9 @@
+/_build
+/cover
+/deps
+erl_crash.dump
+*.ez
+*.beam
+.ash_history
+mix.lock
+/config/prod.secret.exs
