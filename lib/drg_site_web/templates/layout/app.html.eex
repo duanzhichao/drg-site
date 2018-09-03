@@ -6,30 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>DRG网站!</title>
+    <title>CN-DRGs--国家DRGs质控中心</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <script src="<%= static_path(@conn, "/css/jquery/jquery.min.js") %>"></script>
+    <script src="<%= static_path(@conn, "/css/bootstrap3/js/bootstrap.min.js") %>"></script>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap3/css/bootstrap.min.css") %>">
+    <script src="<%= static_path(@conn, "/css/semantic-ui/semantic.min.js") %>"></script>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/semantic-ui/semantic.min.css") %>">
   </head>
 
-  <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+  <body style="width:1260px;margin:0 auto;" >
+    <div class="container" role="main"  style="background-image:url(<%= static_path(@conn, "/css/home_image/bg_img.png") %>);background-repeat:no-repeat;">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div><!-- /btn-group -->
+            <input type="text" class="form-control" aria-label="...">
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        <button type="button" class="btn btn-default" aria-haspopup="true" aria-expanded="false">Action</button>
+      </div>
+    <!--页头  -->
+      <div name="header_bar">
+        <div class="ui img">
+          <img src="<%= static_path(@conn, "/css/home_image/index2.png") %>" style="width:100%;height:100%">
+        </div>
+        <div class="ui blue seven item inverted menu" id="click_head" style="margin-top:0;">
+          <a class="{{index_click 'index'}} item click_head" href="/" id="index">
+            <b>&nbsp;&nbsp;&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;&nbsp;</b>
+          </a>
+          <a class="{{index_click 'zxjs'}} item click_head" href="/introduce" id="zxjs">
+            <b>CN-DRGs</b>
+          </a>
+          <a class="{{index_click 'gzdt'}} item click_head" href="/working" id="gzdt">
+            <b>工作动态</b>
+          </a>
+          <a class="{{index_click 'xgwj'}} item click_head" href="/goverment" id="xgwj">
+            <b>政府文件</b>
+          </a>
+          <a class="{{index_click 'gnyy'}} item click_head" href="/application" id="gnyy">
+            <b>国内应用</b>
+          </a>
+          <a class="{{index_click 'xgyj'}} item click_head" href="/research" id="xgyj">
+            <b>发表文献</b>
+          </a>
+          <a class="{{index_click 'jszl'}} item click_head" href="/technical"  id="jszl">
+            <b>技术资料</b>
+          </a>
+        </div>
+      </div>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <p class="alert alert-info" role="alert" style="margin-bottom:0;"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert" style="margin-bottom:0;"><%= get_flash(@conn, :error) %></p>
 
-      <main role="main">
         <%= render @view_module, @view_template, assigns %>
-      </main>
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+       <!-- /container -->
+
+      <!-- 页脚 -->
+      <div name="footer" id="footer">
+        <div class="ui  vertical footer segment ">
+          <div class="ui center aligned container">
+            <div class="ui horizontal  divided link list">
+              <a class="item" href="#">联系我们</a>
+              <a class="item" href="#">网站地图</a>
+              <a class="item" href="#">规章制度</a>
+              <a class="item" href="#">友情链接</a>
+            </div>
+            <p class="item" style="color:gray">网站建设单位：北京市公共卫生信息中心（北京市医院管理研究所）
+              <br/> 办公室电话：010-63020042&nbsp;邮箱：qcc@cn-drgs.org.cn
+              <br />技术支持：北京东华万兴软件有限公司
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </body>
 </html>
