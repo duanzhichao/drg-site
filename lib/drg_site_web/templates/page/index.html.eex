@@ -1,36 +1,183 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
-
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
+<div class="container" style="margin-top:20px;padding-left:0;padding-right:30px;">
+  <!-- 第一行 -->
+  <div class="ui grid">
+    <!-- 工作动态 -->
+    <div class="thirteen wide column">
+      <div class="ui message segment">
+        <div class="ui blue top attached label">
+          <span style="float:left">工作动态</span>
+          <a href="/working">
+            <span style="float:right">更多
+              <i class="angle double right icon"></i>
+            </span>
+          </a>
+        </div>
+        <div class="ui grid">
+          <!-- 图片循环 -->
+          <div class="af4 wrap col-md-6">
+            <ul id="img_doc_show" class="slidebox" style="top: 0px;">
+              <li value="63">
+                <a value="关于召开DRGs体系下的数据管理及医院绩效评价培训班的通知" style="cursor:pointer">
+                <img src="<%= static_path(@conn, "/css/home_image/image_1.png") %>" width="100%" height="290px"></a>
+              </li>
+              <li value="78">
+                <a value="国家卫生计生委医政医管局成立国家DRGs质控中心" style="cursor:pointer"><img src="<%= static_path(@conn, "/css/home_image/image_2.png") %>" width="100%" height="290px"></a>
+              </li>
+              <li value="75">
+                <a value="国家卫生计生委医政医管局举办2015年疾病诊断相关分组培训班" style="cursor:pointer"><img src="<%= static_path(@conn, "/css/home_image/image_3.png") %>" width="100%" height="290px"></a>
+              </li>
+              <li value="63">
+                <a value="国家 DRGs 质控中心举办DRGs 体系下的数据管理及医院绩效评价培训班" style="cursor:pointer"><img src="<%= static_path(@conn, "/css/home_image/image_4.png") %>" width="100%" height="290px"></a>
+              </li>
+              <li value="79">
+                <a value="北京市医院管理研究所出版《CN-DRGs 分组方案（2014版）》" style="cursor:pointer"><img src="<%= static_path(@conn, "/css/home_image/image_5.png") %>" width="100%" height="290px"></a>
+              </li>
+            </ul>
+          <!-- 新闻标题 -->
+          <div class="eight wide column">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- 第二行 -->
+  <div class="ui grid" style="margin-top:0">
+    <div class="thirteen wide column">
+      <div class="ui grid">
+      <!-- 政府文件 -->
+        <div class="eight wide column" style="padding-right:0px;">
+          <div class="ui raised segment">
+            <div class="ui blue top attached label">
+              <span style="float:left">政府文件</span>
+              <a href="/goverment">
+                <span style="float:right">更多<i class="angle double right icon"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
 
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
+        <!-- 发表文献 -->
+        <div class="eight wide column">
+          <div class="ui raised segment">
+            <div class="ui blue top attached label">
+              <span style="float:left">发表文献</span>
+              <a href="/research">
+                <span style="float:right">更多<i class="angle double right icon"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 出版资料 -->
+    <div class="three wide column" style="padding-left:0px;">
+      <div class="ui segment">
+        <div class="ui blue top attached label">
+          <span style="float:left">出版资料</span>
+        </div>
+        <!-- 代码 开始 -->
+        <div id="fsD12" class="focus2">
+            <div id="D1pic12" class="fPic2">
+                <div class="fcon2" style="display: none;">
+                    <a  href="/introduce">
+                      <img src="<%= static_path(@conn, "/css/home_image/w1.png") %>" style="width:80%;height:80%;;opacity: 1; margin:20px auto auto 10px">
+                    </a>
+                </div>
+
+                <div class="fcon2" style="display: none;">
+                    <a  href="/introduce">
+                      <img src="<%= static_path(@conn, "/css/home_image/w2.png") %>" style="width:80%;height:80%;;opacity: 1; margin:20px auto auto 10px">
+                      </a>
+                </div>
+
+                <div class="fcon2" style="display: none;">
+                    <a  href="/introduce">
+                        <img src="<%= static_path(@conn, "/css/home_image/w3.png") %>" style="width:80%;height:80%;;opacity: 1; margin:20px auto auto 10px"></a>
+                      </a>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- 第三行 -->
+  <div class="ui grid">
+    <div class="thirteen wide column" style="padding-top:0px;">
+      <div class="ui grid">
+        <!-- 国内应用 -->
+        <div class="eight wide column" style="padding-right:0px;">
+          <div class="ui raised segment">
+            <div class="ui blue top attached label">
+              <span style="float:left">国内应用</span>
+              <a href="/application">
+                <span style="float:right">更多<i class="angle double right icon"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- 技术资料 -->
+        <div class="eight wide column">
+          <div class="ui raised segment">
+            <div class="ui blue top attached label">
+              <span style="float:left">技术资料</span>
+              <a href="/technical">
+                <span style="float:right">更多<i class="angle double right icon"></i></span>
+              </a>
+            </div>
+            <div  style="margin-top:8px;font-size:13px;">
+              <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;CN-DRGs分组方法及相关术语说明</a>
+            </div>
+            <div style="margin-top:9px;font-size:13px;">
+              <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-10疾病编码标准</a>
+            </div>
+            <div style="margin-top:9px;font-size:13px;">
+              <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-9手术/操作编码标准</a>
+            </div>
+            <div style="margin-top:9px;font-size:13px;">
+              <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;收费项目分类标准</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 联系我们     -->
+    <div class="three wide column" style="padding-top:0px;padding-left:0px;">
+      <div class="ui segment" id="concatus">
+        <div class="ui blue top attached label">
+          <span style="float:left;">联系我们</span>
+        </div>
+        <div style="text-align:center;">
+          办公室电话：
+          <br /> 010-63020042
+          <div class="ui divider"></div>
+          邮箱：
+          <br />qcc@cn-drgs.org.cn
+          <br />
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<script src="<%= static_path(@conn, "/css/home.js") %>"></script>
+<script type="text/javascript">
+  function logout(){
+    window.location = "/web_user_html/logout";
+  }
+  Qfast.add('widgets', { path: "css/terminator2.2.min.js", type: "js", requires: ['fx'] });
+  Qfast(false, 'widgets', function () {
+    K.tabs({
+      id: 'fsD1',   //焦点图包裹id
+      conId: "D1pic1",  //** 大图域包裹id
+      tabId:"D1fBt",
+      tabTn:"a",
+      conCn: '.fcon', //** 大图域配置class
+      auto: 1,   //自动播放 1或0
+      effect: 'fade',   //效果配置
+      eType: 'click', //** 鼠标事件
+      pageBt:true,//是否有按钮切换页码
+      bns: ['.prev', '.next'],//** 前后按钮配置class
+      interval: 3000  //** 停顿时间
+    })
+  })
+</script>

@@ -17,28 +17,33 @@
 
   <body style="width:1260px;margin:0 auto;" >
     <div class="container" role="main"  style="background-image:url(<%= static_path(@conn, "/css/home_image/bg_img.png") %>);background-repeat:no-repeat;">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="input-group">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </div><!-- /btn-group -->
-            <input type="text" class="form-control" aria-label="...">
-          </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-        <button type="button" class="btn btn-default" aria-haspopup="true" aria-expanded="false">Action</button>
-      </div>
+      <nav class="navbar navbar-default heder_search" style="margin:0px;border:none;">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav"></ul>
+          <div class="navbar-form navbar-left">
+            <div class="form-group input-group"><span class="input-group-addon" style="width:158px;">
+                <li class="dropdown fuzzy_search" style="list-style:none;"><a class="dropdown-toggle" id="fuzzy_head" href="#" data-toggle="dropdown">分类查询 <span class="caret"></span></a>
+                  <ul class="dropdown-menu fuzzy_classification" id="fuzzy_classification">
+                    <li><a>工作动态</a></li>
+                    <li><a>国家卫计委文件</a></li>
+                    <li><a>国家人社部文件</a></li>
+                    <li><a>绩效评价应用</a></li>
+                    <li><a>付费改革应用</a></li>
+                  </ul>
+                </li></span>
+              <input class="form-control" id="classification_search" type="text" placeholder="搜索" name="classification_search"/>
+            </div>
+            <button class="btn btn-default" id="classification_search_button">搜索</button>
+          </div>
+          <ul class="nav navbar-nav navbar-right" id="web_user_name">
+            <li><a href="/Technical_literature" style="color:#fff">登录</a></li>
+          </ul>
+        </div>
+      </nav>
     <!--页头  -->
       <div name="header_bar">
         <div class="ui img">
-          <img src="<%= static_path(@conn, "/css/home_image/index2.png") %>" style="width:100%;height:100%">
+          <img src="<%= static_path(@conn, "/css/home_image/banner.png") %>" style="width:100%;height:100%">
         </div>
         <div class="ui blue seven item inverted menu" id="click_head" style="margin-top:0;">
           <a class="{{index_click 'index'}} item click_head" href="/" id="index">
