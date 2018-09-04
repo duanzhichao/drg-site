@@ -15,24 +15,27 @@
         <div class="ui grid">
           <!-- 图片循环 -->
           <div class="af4 wrap col-md-6">
-            <ul id="img_doc_show" class="slidebox" style="top: 0px;">
-              <li value="63">
-                <a value="关于召开DRGs体系下的数据管理及医院绩效评价培训班的通知" style="cursor:pointer">
-                <img src="<%= static_path(@conn, "/css/home_image/image_1.png") %>" width="100%" height="290px"></a>
-              </li>
-              <li value="78">
-                <a value="国家卫生计生委医政医管局成立国家DRGs质控中心" style="cursor:pointer"><img src="<%= static_path(@conn, "/css/home_image/image_2.png") %>" width="100%" height="290px"></a>
-              </li>
-              <li value="75">
-                <a value="国家卫生计生委医政医管局举办2015年疾病诊断相关分组培训班" style="cursor:pointer"><img src="<%= static_path(@conn, "/css/home_image/image_3.png") %>" width="100%" height="290px"></a>
-              </li>
-              <li value="63">
-                <a value="国家 DRGs 质控中心举办DRGs 体系下的数据管理及医院绩效评价培训班" style="cursor:pointer"><img src="<%= static_path(@conn, "/css/home_image/image_4.png") %>" width="100%" height="290px"></a>
-              </li>
-              <li value="79">
-                <a value="北京市医院管理研究所出版《CN-DRGs 分组方案（2014版）》" style="cursor:pointer"><img src="<%= static_path(@conn, "/css/home_image/image_5.png") %>" width="100%" height="290px"></a>
-              </li>
-            </ul>
+            <div id="banner">
+                <div id="banner_bg">
+                </div>
+                <div id="banner_info">
+                  国家卫生计生委医政管理局成立..
+                </div>
+                <ul>
+                  <li class="on">1</li>
+                  <li>2</li>
+                  <li>3</li>
+                  <li>4</li>
+                  <li>5</li>
+                </ul>
+                <div id="banner_list">
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_1.png") %>" width="100%" height="290px"></a></a>
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_2.png") %>" width="100%" height="290px"></a></a>
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_3.png") %>" width="100%" height="290px"></a></a>
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_4.png") %>" width="100%" height="290px"></a></a>
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_5.png") %>" width="100%" height="290px"></a></a>
+                </div>
+            </div>
           <!-- 新闻标题 -->
           <div class="eight wide column">
           </div>
@@ -159,25 +162,119 @@
     </div>
   </div>
 </div>
-<script src="<%= static_path(@conn, "/css/home.js") %>"></script>
 <script type="text/javascript">
-  function logout(){
-    window.location = "/web_user_html/logout";
-  }
-  Qfast.add('widgets', { path: "css/terminator2.2.min.js", type: "js", requires: ['fx'] });
-  Qfast(false, 'widgets', function () {
-    K.tabs({
-      id: 'fsD1',   //焦点图包裹id
-      conId: "D1pic1",  //** 大图域包裹id
-      tabId:"D1fBt",
-      tabTn:"a",
-      conCn: '.fcon', //** 大图域配置class
-      auto: 1,   //自动播放 1或0
-      effect: 'fade',   //效果配置
-      eType: 'click', //** 鼠标事件
-      pageBt:true,//是否有按钮切换页码
-      bns: ['.prev', '.next'],//** 前后按钮配置class
-      interval: 3000  //** 停顿时间
+var t = n = 0,
+    count;
+$(document).ready(function() {
+        // 获取图片标签长度
+        count = $("#banner_list a").length;
+        // 不是当前显示的图片隐藏
+        $("#banner_list a:not(:first-child)").hide();
+        // 点击下面的1234按钮，切换图片
+        $("#banner li").click(function() {
+            var i = $(this).text() - 1;
+            if (i + 1 <= 2) {
+              $("#banner_info").text('国家卫生计生委医政管理局成立...')
+            } else if (i + 1 <= 4) {
+              $("#banner_info").text('国家卫生计生委医政医管局举办..')
+            } else {
+              $("#banner_info").text('北京市医院管理局研究所出版..')
+            }
+            n = i;
+            if (i >= count) return;
+            // 淡入淡出效果
+            // $("#banner_list a").filter(":visible").fadeOut(500).parent().children().eq(i).fadeIn(1000);
+            $("#banner_list a").filter(":visible").fadeOut().parent().children().eq(i).fadeIn();
+            // 响应点击
+            $(this).toggleClass("on");
+            // 切换按钮的时候让上一个按钮回归原来的样式
+            $(this).siblings().removeAttr("class");
+        });
+        t = setInterval("showAuto()", 4000);
+        $("#banner").hover(function() {
+                clearInterval(t)
+            },
+            function() {
+                t = setInterval("showAuto()", 4000);
+            });
     })
-  })
+    // 自动轮播
+function showAuto() {
+    n = n >= (count - 1) ? 0 : ++n;
+    $("#banner li").eq(n).trigger('click');
+}
 </script>
+
+<style>
+#banner {
+    position: relative;
+    width: 478px;
+    height: 286px;
+    border: 1px solid #666;
+    overflow: hidden;
+}
+
+#banner_list img {
+    border: 0px;
+}
+
+#banner_bg {
+    position: absolute;
+    bottom: 0;
+    background-color: #000;
+    height: 30px;
+    filter: Alpha(Opacity=30);
+    opacity: 0.3;
+    z-index: 1000;
+    cursor: pointer;
+    width: 478px;
+}
+
+#banner_info {
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    height: 22px;
+    color: #fff;
+    z-index: 1001;
+    cursor: pointer
+}
+
+#banner_text {
+    position: absolute;
+    width: 120px;
+    z-index: 1002;
+    right: 3px;
+    bottom: 3px;
+}
+
+#banner ul {
+    position: absolute;
+    list-style-type: none;
+    filter: Alpha(Opacity=80);
+    opacity: 0.8;
+    z-index: 1002;
+    margin: 0;
+    padding: 0;
+    bottom: 3px;
+    right: 5px;
+}
+
+#banner ul li {
+    padding: 0px 8px;
+    float: left;
+    display: block;
+    color: #FFF;
+    background: #3d5164;
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+#banner ul li.on {
+    background-color: #000;
+}
+
+#banner_list a {
+    position: absolute;
+}
+</style>
