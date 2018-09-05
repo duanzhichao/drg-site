@@ -16,7 +16,8 @@
   </head>
 
   <body style="width:1260px;margin:0 auto;" >
-    <div class="container" role="main"  style="background-image:url(<%= static_path(@conn, "/css/home_image/bg_img.png") %>);background-repeat:no-repeat;">
+    <!-- <div class="container" role="main"  style="background-image:url(<%= static_path(@conn, "/css/home_image/bg_img.png") %>);background-repeat:no-repeat;"> -->
+    <div class="container" role="main"  style="background:#bdd5e3">
       <nav class="navbar navbar-default heder_search" style="margin:0px;border:none;">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav"></ul>

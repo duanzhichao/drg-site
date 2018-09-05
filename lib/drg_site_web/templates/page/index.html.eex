@@ -2,19 +2,17 @@
   <!-- 第一行 -->
   <div class="ui grid">
     <!-- 工作动态 -->
-    <div class="thirteen wide column">
+    <div class="sixteen wide column">
       <div class="ui message segment">
-        <div class="ui blue top attached label">
-          <span style="float:left">工作动态</span>
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">工作动态</h3>
           <a href="/working">
-            <span style="float:right">更多
-              <i class="angle double right icon"></i>
-            </span>
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
           </a>
         </div>
         <div class="ui grid">
           <!-- 图片循环 -->
-          <div class="af4 wrap col-md-6">
+          <div class="eight wide column">
             <div id="banner">
                 <div id="banner_bg">
                 </div>
@@ -36,11 +34,81 @@
                     <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_5.png") %>" width="100%" height="290px"></a></a>
                 </div>
             </div>
+          </div>
           <!-- 新闻标题 -->
           <div class="eight wide column">
+            345
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="ui grid">
+    <div class="sixteen wide column">
+      <div class="ui segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">出版资料</h3>
+          <a href="/working">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
+        </div>
+        <!-- 代码 开始 -->
+        <div class="ui grid" style="height:300px">
+          <div class="one wide column"></div>
+          <div class="three wide column">
+            <div class="fcon2" id="book_img1">
+                <a href="/introduce">
+                  <img src="<%= static_path(@conn, "/css/home_image/w1.png") %>" style="width:80%;height:80%;opacity: 1;">
+                </a>
+            </div>
+            <div class="fcon2" id="book_img2" style="display:none;">
+                <a href="/introduce">
+                  <img src="<%= static_path(@conn, "/css/home_image/w2.png") %>" style="width:80%;height:80%;;opacity: 1">
+                </a>
+            </div>
+            <div class="fcon2" id="book_img3" style="display:none;">
+                <a href="/introduce">
+                    <img src="<%= static_path(@conn, "/css/home_image/w3.png") %>" style="width:80%;height:80%;;opacity: 1"></a>
+                </a>
+            </div>
+          </div>
+          <div class="one wide column"></div>
+          <div class="eleven wide column" style="margin-top:15px;">
+            <a href="/introduce" style="color:#000;" id="book_p1">
+              <h4>CN-DRGs分组方案(2014版)</h4>
+              <p style="font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本书是我国首次出版发行的第一本适用于我国疾病和手术编码数据环境的DRGs分组方案。DRGs中文译为疾病诊断相关分组（Diagnosis Related Groups，简称DRGs），是上世纪70年代美国学者研发的一种针对短期住院的病例组合工具。它以出院病历为依据，综合考虑了患者的主要诊断和主要治疗方式，结合个体特征如年龄、并发症和伴随病，根据疾病的复杂程度和费用高低将相似的病例分到同一个组中。基于DRGs分组工具的帮助，卫生管理部门可以对不同的医疗机构和临床学科进行较为客观科学的医疗服务质量绩效评价,医疗保险部门可以对不同医院收治的同质住院病例进行预付费管理。</p>
+            </a>
+            <a href="/introduce" style="color:#000;display:none;" id="book_p2">
+              <h4>北京DRGs系统的研究与应用</h4>
+              <p style="font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本书是我国第一部系统介绍DRGs技术方法和应用方式的专著。涉及DRGs如何分组，如何实现风险调整、如何在医疗服务绩效评价中发挥作用、如何应用于医保支付制度改革等核心问题。对这些问题的体系介绍，不仅有助于科研技术人员了解DRGs的开发和本土化过程，也有助于卫生管理者加深对DRGs应用范围和应用方法的理解。</p>
+              <p style="font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参加本书编写的所有成员均是多年来从事DRGs研究的核心团队成员或应用DRGs进行卫生服务管理的实践者。他们将理论和实践相结合，在书中贡献了BJ-DRGs及其相关支持系统开发过程的第一手经验与实践案。</p>
+            </a>
+            <a href="/introduce" style="color:#000;display:none;" id="book_p3">
+              <h4>疾病诊断与手术操作名词术语</h4>
+              <p style="font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科学、准确的评价医院临床服务能力，是保证医疗服务质量和安全、控制医疗费用不合理增长以及提高管理绩效的重要前提。目前，DRGs（Diagnosis Related Groups）是国际上较为公认的医院评价方法，也是近些年我们努力推动、希望尽早在中国实现本土化的指标体系。DRGs分组数据基础来自医院出院病历首页的诊疗信息、其信息的准确性、完整性决定了分组的科学性。因此，在国际统一标准的原则下，依照临床医学的不断进展统一我国疾病诊断、治疗标准术语又成为基础的基础。</p>
+            </a>
+          </div>
+        </div>
+        <div class="ui grid">
+          <div class="nine wide column"></div>
+          <div class="three wide column">
+            <div class="ui horizontal list" style="width:100%;margin:0 auto">
+              <a class="item" onclick="change('1')" style="color:#000;">
+                1
+              </a>
+              <a class="item" onclick="change('2')" style="color:#000;">
+                2
+              </a>
+              <a class="item" onclick="change('3')" style="color:#000;">
+                3
+              </a>
+            </div>
+          </div>
+          <div class="four wide column"></div>
+        </div>
+      </div>
+
     </div>
   </div>
   <!-- 第二行 -->
@@ -203,6 +271,17 @@ function showAuto() {
     n = n >= (count - 1) ? 0 : ++n;
     $("#banner li").eq(n).trigger('click');
 }
+var show_num = 1;
+function change(num) {
+
+  // $(`#book_img${num}`).removeAttr('class');
+  $(`#book_img${show_num}`).css("display","none")
+  $(`#book_img${num}`).css("display","inherit")
+  $(`#book_p${show_num}`).css("display","none")
+  $(`#book_p${num}`).css("display","inherit")
+  show_num = num
+  // $(this).siblings().removeAttr("class");
+}
 </script>
 
 <style>
@@ -276,5 +355,12 @@ function showAuto() {
 
 #banner_list a {
     position: absolute;
+}
+
+#book_list a {
+    position: absolute;
+    margin-top: 0;
+    padding: 0;
+
 }
 </style>
