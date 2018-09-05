@@ -43,7 +43,7 @@
       </div>
     </div>
   </div>
-
+  <!-- 第二行 -->
   <div class="ui grid">
     <div class="sixteen wide column">
       <div class="ui segment">
@@ -54,7 +54,7 @@
           </a>
         </div>
         <!-- 代码 开始 -->
-        <div class="ui grid" style="height:300px">
+        <div class="ui grid" style="height:300px;">
           <div class="one wide column"></div>
           <div class="three wide column">
             <div class="fcon2" id="book_img1">
@@ -111,120 +111,65 @@
 
     </div>
   </div>
-  <!-- 第二行 -->
-  <div class="ui grid" style="margin-top:0">
-    <div class="thirteen wide column">
-      <div class="ui grid">
+  <!-- 第三行 -->
+  <div class="ui grid" style="height:200px;">
+    <div class="eight wide column">
       <!-- 政府文件 -->
-        <div class="eight wide column" style="padding-right:0px;">
-          <div class="ui raised segment">
-            <div class="ui blue top attached label">
-              <span style="float:left">政府文件</span>
-              <a href="/goverment">
-                <span style="float:right">更多<i class="angle double right icon"></i></span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 发表文献 -->
-        <div class="eight wide column">
-          <div class="ui raised segment">
-            <div class="ui blue top attached label">
-              <span style="float:left">发表文献</span>
-              <a href="/research">
-                <span style="float:right">更多<i class="angle double right icon"></i></span>
-              </a>
-            </div>
-          </div>
+      <div class="ui raised segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">政府文件</h3>
+          <a href="/goverment">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
         </div>
       </div>
     </div>
-    <!-- 出版资料 -->
-    <div class="three wide column" style="padding-left:0px;">
-      <div class="ui segment">
-        <div class="ui blue top attached label">
-          <span style="float:left">出版资料</span>
-        </div>
-        <!-- 代码 开始 -->
-        <div id="fsD12" class="focus2">
-            <div id="D1pic12" class="fPic2">
-                <div class="fcon2" style="display: none;">
-                    <a  href="/introduce">
-                      <img src="<%= static_path(@conn, "/css/home_image/w1.png") %>" style="width:80%;height:80%;;opacity: 1; margin:20px auto auto 10px">
-                    </a>
-                </div>
-
-                <div class="fcon2" style="display: none;">
-                    <a  href="/introduce">
-                      <img src="<%= static_path(@conn, "/css/home_image/w2.png") %>" style="width:80%;height:80%;;opacity: 1; margin:20px auto auto 10px">
-                      </a>
-                </div>
-
-                <div class="fcon2" style="display: none;">
-                    <a  href="/introduce">
-                        <img src="<%= static_path(@conn, "/css/home_image/w3.png") %>" style="width:80%;height:80%;;opacity: 1; margin:20px auto auto 10px"></a>
-                      </a>
-                </div>
-            </div>
+    <!-- 发表文献 -->
+    <div class="eight wide column">
+      <div class="ui raised segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">发表文献</h3>
+          <a href="/research">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
         </div>
       </div>
-
+    </div>
     </div>
   </div>
-  <!-- 第三行 -->
+  <!-- 第四行 -->
   <div class="ui grid">
-    <div class="thirteen wide column" style="padding-top:0px;">
-      <div class="ui grid">
-        <!-- 国内应用 -->
-        <div class="eight wide column" style="padding-right:0px;">
-          <div class="ui raised segment">
-            <div class="ui blue top attached label">
-              <span style="float:left">国内应用</span>
-              <a href="/application">
-                <span style="float:right">更多<i class="angle double right icon"></i></span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- 技术资料 -->
-        <div class="eight wide column">
-          <div class="ui raised segment">
-            <div class="ui blue top attached label">
-              <span style="float:left">技术资料</span>
-              <a href="/technical">
-                <span style="float:right">更多<i class="angle double right icon"></i></span>
-              </a>
-            </div>
-            <div  style="margin-top:8px;font-size:13px;">
-              <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;CN-DRGs分组方法及相关术语说明</a>
-            </div>
-            <div style="margin-top:9px;font-size:13px;">
-              <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-10疾病编码标准</a>
-            </div>
-            <div style="margin-top:9px;font-size:13px;">
-              <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-9手术/操作编码标准</a>
-            </div>
-            <div style="margin-top:9px;font-size:13px;">
-              <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;收费项目分类标准</a>
-            </div>
-          </div>
+    <!-- 国内应用 -->
+    <div class="eight wide column" style="padding-right:0px;">
+      <div class="ui raised segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">国内应用</h3>
+          <a href="/goverment">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
         </div>
       </div>
     </div>
-    <!-- 联系我们     -->
-    <div class="three wide column" style="padding-top:0px;padding-left:0px;">
-      <div class="ui segment" id="concatus">
-        <div class="ui blue top attached label">
-          <span style="float:left;">联系我们</span>
+    <!-- 技术资料 -->
+    <div class="eight wide column">
+      <div class="ui raised segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">技术资料</h3>
+          <a href="/goverment">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
         </div>
-        <div style="text-align:center;">
-          办公室电话：
-          <br /> 010-63020042
-          <div class="ui divider"></div>
-          邮箱：
-          <br />qcc@cn-drgs.org.cn
-          <br />
+        <div  style="margin-top:8px;font-size:13px;">
+          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;CN-DRGs分组方法及相关术语说明</a>
+        </div>
+        <div style="margin-top:9px;font-size:13px;">
+          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-10疾病编码标准</a>
+        </div>
+        <div style="margin-top:9px;font-size:13px;">
+          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-9手术/操作编码标准</a>
+        </div>
+        <div style="margin-top:9px;font-size:13px;">
+          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;收费项目分类标准</a>
         </div>
       </div>
     </div>

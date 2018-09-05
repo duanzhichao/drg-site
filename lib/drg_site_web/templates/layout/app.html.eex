@@ -83,14 +83,17 @@
         <div class="ui  vertical footer segment ">
           <div class="ui center aligned container">
             <div class="ui horizontal  divided link list">
-              <a class="item" href="#">联系我们</a>
-              <a class="item" href="#">网站地图</a>
+              <a class="item" href="/contact_us">联系我们</a>
+              <a class="item" href="/map">网站地图</a>
               <a class="item" href="#">规章制度</a>
               <a class="item" href="#">友情链接</a>
             </div>
-            <p class="item" style="color:gray">网站建设单位：北京市公共卫生信息中心（北京市医院管理研究所）
-              <br/> 办公室电话：010-63020042&nbsp;邮箱：qcc@cn-drgs.org.cn
+            <p class="item" style="color:gray">
+              建议使用谷歌浏览器，分辨率为1024*768以上
+              <br/> 网站建设单位：北京市卫生计生委信息中心(北京市卫生计生委政策研究中心)
+              <br/> 办公室电话：010-83366932&nbsp;邮箱：qcc@cn-drgs.org.cn
               <br />技术支持：北京东华万兴软件有限公司
+              <br />版权所有&nbsp;盗版必究
             </p>
           </div>
         </div>
