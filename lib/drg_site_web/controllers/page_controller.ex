@@ -10,6 +10,22 @@ defmodule DrgSiteWeb.PageController do
     render conn, "cn_drgs.html", data_tab: data_tab
   end
 
+  def working(conn, _params) do
+    render conn, "working.html"
+  end
+
+  def goverment(conn, _params) do
+    render conn, "goverment.html"
+  end
+
+  def application(conn, _params) do
+    render conn, "application.html"
+  end
+
+  def technical(conn, _params) do
+    render conn, "technical.html"
+  end
+
   def test(conn, _params) do
     render conn, "test.html", layout: false
   end

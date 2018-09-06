@@ -18,6 +18,10 @@ defmodule DrgSiteWeb.Router do
 
     get "/", PageController, :index
     get "/cn_drgs", PageController, :cn_drgs
+    get "/working", PageController, :working
+    get "/goverment", PageController, :goverment
+    get "/application", PageController, :application
+    get "/technical", PageController, :technical
     get "/test", PageController, :test
   end
 
