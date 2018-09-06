@@ -47,25 +47,25 @@
           <img src="<%= static_path(@conn, "/css/home_image/banner.png") %>" style="width:100%;height:100%">
         </div>
         <div class="ui blue seven item inverted menu" id="click_head" style="margin-top:0;">
-          <a class="{{index_click 'index'}} item click_head" href="/" id="index">
+          <a class="item" href="/" id="index">
             <b>&nbsp;&nbsp;&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;&nbsp;</b>
           </a>
-          <a class="{{index_click 'zxjs'}} item click_head" href="/introduce" id="zxjs">
+          <a class="item" href="/cn_drgs">
             <b>CN-DRGs</b>
           </a>
-          <a class="{{index_click 'gzdt'}} item click_head" href="/working" id="gzdt">
+          <a class="item" href="/working">
             <b>工作动态</b>
           </a>
-          <a class="{{index_click 'xgwj'}} item click_head" href="/goverment" id="xgwj">
+          <a class="item" href="/goverment">
             <b>政府文件</b>
           </a>
-          <a class="{{index_click 'gnyy'}} item click_head" href="/application" id="gnyy">
+          <a class="item" href="/application">
             <b>国内应用</b>
           </a>
-          <a class="{{index_click 'xgyj'}} item click_head" href="/research" id="xgyj">
+          <a class="item" href="/research">
             <b>发表文献</b>
           </a>
-          <a class="{{index_click 'jszl'}} item click_head" href="/technical"  id="jszl">
+          <a class="item" href="/technical">
             <b>技术资料</b>
           </a>
         </div>

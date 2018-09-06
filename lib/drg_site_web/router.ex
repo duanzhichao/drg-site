@@ -17,6 +17,7 @@ defmodule DrgSiteWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/cn_drgs", PageController, :cn_drgs
     get "/test", PageController, :test
   end
 
