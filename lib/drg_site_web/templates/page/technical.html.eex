@@ -1,0 +1,43 @@
+
+<div class="ui grid" style="margin-top:30px;margin-bottom:250px;">
+  <!-- 登录 -->
+  <div class="four wide column">
+  </div>
+  <div class="eight wide column">
+    <div class="ui message segment">
+      <div class="ui blue top attached label" style="height:40px;">
+        <h4 style="line-height: 20px;float:left;">登录</h4>
+      </div>
+      <div class="ui grid">
+        <div class="eight wide column">
+          <div class="input-group">
+            <h5>用户名</h5>
+            <input class="form-control" type="text" placeholder="用户名" aria-describedby="basic-addon1" name="username" id="username"/>
+          </div>
+          <br />
+          <div class="input-group">
+            <h5>密码</h5>
+            <input class="form-control" type="password" placeholder="密码" aria-describedby="basic-addon1" name="password" id="password"/>
+          </div>
+          <br />
+          <div class="input-group button">
+            <button class="btn btn-default login" type="button" id="login">登录</button><a href="/regiester">
+              <button class="btn btn-default register" type="button">注册</button></a>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <div>
+            <h4 class="ui center aligned header">扫描二维码,关注公众号</h4>
+          </div>
+          <br />
+          <br />
+          <div>
+            <div><img class="ui centered medium image" src="<%= static_path(@conn, "/css/home_image/qrcode_258.jpg") %>" style="width:120px;"/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="four wide column">
+  </div>
+</div>

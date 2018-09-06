@@ -1,0 +1,223 @@
+<div class="container" style="margin-top:20px;">
+  <div class="ui grid">
+    <div class="one wide column">
+    </div>
+     <!-- 内容 -->
+    <div class="fourteen wide column">
+      <div class="ui top attached tabular menu">
+        <a class="blue <%= if @data_tab == "first" do %> active <% end %> item" data-tab="first">CN-DRGs简介</a>
+        <!-- data-tab -->
+        <a class="blue <%= if @data_tab == "second" do %> active <% end %> item" data-tab="second">中心介绍</a>
+        <a class="blue <%= if @data_tab == "third" do %> active <% end %> item" data-tab="third">组织架构</a>
+        <a class="blue <%= if @data_tab == "fourth" do %> active <% end %> item" data-tab="fourth">出版资料</a>
+      </div>
+      <!-- CN-DRGs简介 -->
+      <div class="ui bottom attached tab segment <%= if @data_tab == "first" do %> active <% end %>" data-tab="first">
+        <h3 class="ui center aligned header">CN-DRGs简介</h3>
+        <p style="line-height:25px;">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          DRGs中文译为疾病诊断相关分组（Diagnosis Related Groups，简称DRGs），是上世纪70年代美国学者研发的一种科学先进的病例组合工具。DRGs以出院病历为依据，综合考虑了患者的主要诊断和主要治疗方式，结合个体特征如年龄、并发症和伴随病，根据疾病的复杂程度和费用将相似的病例分到同一个组中。基于这样的分组，卫生管理部门就可以在DRGs系统的帮助下对不同的医疗机构进行较为客观的医疗服务绩效评价，而医疗保险部门也可以根据此分组进行医保付费的管理。目前DRGs在美澳德法等世界上很多国家均广泛应用。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          2004年以来，北京市DRGs项目组在市政府支持下，以美澳DRGs为基础，结合北京市出院病案首页信息，研究开发出适用于国内数据环境的BJ-DRGs试行版，并应用于北京市医院医疗质量与绩效评价、医保付费方式改革试点等工作，取得了明显效果，受到了各级管理部门和全国同行的广泛关注。2013年，北京市组织300余名临床专家和病案信息工作人员，完成了BJ-DRGs相关临床术语的论证和分组系统升级工作，开发出BJ-DRGs（2014版）分组管理系统软件。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          根据《国家卫生计生委医政医管局关于进一步加强疾病诊断相关分组协作工作的函》（国卫医评价便函[2015]80号）和《国家卫生计生委医政医管局关于指定北京市公共卫生信息中心作为疾病诊断相关分组质控中心的函》文件精神，为进一步推进DRGs在我国的应用，提升医疗管理水平，提高医疗服务质量，控制医疗费用，国家卫生计生委医政医管局决定以北京市公共卫生信息中心（北京市医院管理研究所）享有著作权的DRGs分组方案为基础，等效建立CN-DRGs分组方案（2014版）。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          此分组方案共包括26个主要诊断分类（Major Diagnostic Category，以下简称MDC），覆盖所有短期住院病例。本分组系统利用患者当次住院病案首页中的诊疗信息，先将病例按主要诊断分到某一MDC，再按照主要治疗方式分为外科部分的ADRGs(相近的诊断相关分组，Adjacent Diagnosis Related Groups)、内科部分的ADRGs或操作部分的ADRGs，并结合影响临床过程的年龄、性别、有无合并症、伴随病(Complication&Comorbidity，C.C.)，有无严重合并症、伴随病(MajorComplication&Comorbidity，MCC)等其他因素，按照临床过程一致性和资源消耗相似性的原则，最终将所有病例分为783个DRGs。
+        </p>
+      </div>
+      <!-- 中心介绍 -->
+      <div class="ui bottom attached tab segment <%= if @data_tab == "second" do %> active <% end %>" data-tab="second">
+        <h3 class="ui aligned center header">中心介绍</h3>
+        <p style="line-height:25px;">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          我中心作为北京市公共卫生信息中心（北京市医院管理研究所），是北京市卫生计生委所属事业单位，其前身为北京市卫生局信息中心和北京市医院管理研究所。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          中心主要业务包括了医疗卫生相关的信息采集、统计分析，以及医疗卫生服务相关研究工作。自2004年北京市启动新一轮DRGs研究项目以来，我中心在市委市政府支持下，以美澳DRGs为基础，结合北京市出院病案首页信息，研究开发出适用于国内数据环境的BJ-DRGs试行版，并应用于北京市医院医疗质量与绩效评价、医保付费方式改革试点等工作，取得了明显效果，受到了各级管理部门和全国同行的广泛认可。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          2015年3月，根据《国家卫生计生委医政医管局关于指定北京市公共卫生信息中心作为疾病诊断相关分组质控中心的函》文件要求，我中心成立了国家疾病诊断相关分组质控中心，制订了相关规章制度和技术规范。
+          <br />
+          <b>中心工作职责如下：</b>
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          1、负责制定并维护诊断相关分组（以下简称DRGs）所需的医疗机构患者诊疗信息采集标准，通过持续的人员培训与督导检查保持数据质量。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          2、完善适合我国各地区应用的分组方案，组织行业专家动态维护更新DRGs分组器。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          3、受国家卫生计生委的委托，配合各省卫生计生行政主管部门，运用DRGs方法对所管辖医疗机构的医疗行为、医疗服务绩效与质量进行考核和评价，提交年度医疗机构医疗服务绩效与质量报告，为医疗机构管理提供数据和技术支持。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          4、为医疗保险机构实施DRGs-PPS工作提供技术支持。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          5、为诊断相关分组推广提供技术支持。
+        </p>
+      </div>
+      <!-- 组织架构 -->
+      <div class="ui bottom attached tab segment <%= if @data_tab == "third" do %> active <% end %>" data-tab="third">
+        <h3 class="ui aligned center header">中心组织架构</h3>
+        <p style="line-height:25px;">
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据国家卫生计生委医政医管局要求，CN-DRGs工作组主要组织架构如下：<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中心成立项目领导小组和业务管理部门以及DRGs分组论证专家委员会，广泛依托全国各地的有关行政部门工作人员以及专家技术力量开展工作。
+          <br/>（一） 领导小组<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由国家卫生计生委医政医管局、各省区市卫生计生委、社会医疗保险部门有关DRGs工作的负责同志组成。领导小组下设办公室，办公室设在北京市公共卫生信息中心。
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          组长：国务院参事邓小虹
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          成员：
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          国家卫生计生委医政医管局综合评价处 陈虎副处长
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          国家卫生计生委医政医管局医疗质量处 樊静处长
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          北京市公共卫生信息中心 张文中主任
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          各省区市综合协调组组长
+          <br/>（二） 业务管理部门
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          1、办公室，负责DRGs工作相关组织协调事务
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          主任：郭默宁 副研究员 北京市公共卫生信息中心统计室主任
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          负责组织落实相关政策，协调基础性工作，保障DRGs协作工作顺利开展。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          2、病案质控督导组
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          组长：王怡 研究员 北京协和医院病案科&WHO疾病分类合作中心副主任
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          负责病案首页数据采集、数据质量与督导检查；对各省市区组织的医疗机构相关工作人员培训提供技术指导。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          3、诊疗项目数据字典组
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          组长: 焦建军 副研究员 中日友好医院医务处副处长兼病案统计科主任
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          参与病案首页字典与主要诊断选择原则的维护；对各省市区组织的医疗机构相关工作人员培训提供技术指导。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          4、ICD编码组
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          组长：黄锋 研究员 北京大学人民医院病案统计室主任
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          参与疾病分类与手术操作分类（ICD-10与ICD-9）临床版的编制和维护；对各省市区组织的医疗机构相关工作人员培训提供技术指导。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          5、付费与价格组
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          组长：张乐辉 副研究员 首都医科大学附属北京安贞医院医保办主任
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          负责DRGs费用绩效管理与控费研究；DRGs相关付费政策研究；对各省市区的物价与付费相关工作提供技术指导。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          6、DRGs分组器应用研究组
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          组长：简伟研 副教授 北京大学公共卫生学院卫生政策与管理系副主任
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          利用DRGs方法开展医疗服务绩效评价和质量监测；编制DRGs工作简报和年度评价报告；对各省市区的绩效评价和质量监测相关工作提供技术指导。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          7、DRGs分组论证工作组
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          组长：张爱萍 研究员 北京市医院管理研究所
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          利用DRGs应用过程中发现的问题，动态研究维护DRGs分组规则，定期组织临床论证专家开展分组规则研讨和调整。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          8、DRGs信息技术组
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          组长：王晖 高级工程师 国家卫生计生委卫生和计划生育监督中心信息二处处长
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          负责病案首页数据库与DRGs省级管理平台对接的有关技术工作；
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <img src="<%= static_path(@conn, "/css/home_image/a.png") %>" style="width:90%;height:90%">
+        </p>
+      </div>
+      <!-- 出版资料 -->
+      <div class="ui bottom  attached tab segment <%= if @data_tab == "fourth" do %> active <% end %>" data-tab="fourth">
+        <div class="ui grid">
+          <div class="ui five wide column">
+            <img src="<%= static_path(@conn, "/css/home_image/w1.png") %>" style="width:60%;height:90%;">
+          </div>
+          <div class="ui eleven wide column">
+            <p style="line-height:25px;">
+              <b>CN-DRGs分组方案(2014版)</b>
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              本书是我国首次出版发行的第一本适用于我国疾病和手术编码数据环境的DRGs分组方案。DRGs中文译为疾病诊断相关分组（Diagnosis Related Groups，简称DRGs），是上世纪70年代美国学者研发的一种针对短期住院的病例组合工具。它以出院病历为依据，综合考虑了患者的主要诊断和主要治疗方式，结合个体特征如年龄、并发症和伴随病，根据疾病的复杂程度和费用高低将相似的病例分到同一个组中。基于DRGs分组工具的帮助，卫生管理部门可以对不同的医疗机构和临床学科进行较为客观科学的医疗服务质量绩效评价,医疗保险部门可以对不同医院收治的同质住院病例进行预付费管理。半个世纪来，DRGs方法在世界上很多国家被成功地应用于医院评价和医疗付费管理中，取得了良好的效果。
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              相信本书的出版，将加快DRGs管理方法在我国的推广速度，从而大大提升我国医院的整体科学管理水平，为医疗保险部门实现按DRGs付费，进一步全面推动卫生体制改革奠定基础！
+            </p>
+          </div>
+        </div>
+        <div>
+          <b>购买网址：</b>
+          <br /><br />
+          <a href="http://dwz.cn/1EOj8l" target="_blank">
+            <span id="color">天猫：</span>http://dwz.cn/1EOj8l
+          </a>
+          <br />
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui grid">
+          <div class="ui five wide column">
+            <img src="<%= static_path(@conn, "/css/home_image/w2.png") %>" style="width:65%;height:85%;">
+          </div>
+          <div class="ui eleven wide column">
+            <p style="line-height:25px;">
+              <b>北京DRGs系统的研究与应用</b>
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              本书是我国第一部系统介绍DRGs技术方法和应用方式的专著。涉及DRGs如何分组，如何实现风险调整、如何在医疗服务绩效评价中发挥作用、如何应用于医保支付制度改革等核心问题。对这些问题的体系介绍，不仅有助于科研技术人员了解DRGs的开发和本土化过程，也有助于卫生管理者加深对DRGs应用范围和应用方法的理解。
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              参加本书编写的所有成员均是多年来从事DRGs研究的核心团队成员或应用DRGs进行卫生服务管理的实践者。他们将理论和实践相结合，在书中贡献了BJ-DRGs及其相关支持系统开发过程的第一手经验与实践案例，这对于读者尤其是改革者深刻体会DRGs的应用实践有着莫大的裨益，也是本书区别于其他相关书籍的特点所在。
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              本书不仅关注DRGs系统本身，还特别强调了这一系统以数据为基础的特点，专门阐述了国际疾病分类（ICD）系统、病案信息数据与DRGs的关系，这一点往往容易被决策者忽略。在此基础上，辅以北京改善医疗服务信息质量从而提升DRGs应用效果的实践案例，让读者深刻理解推进DRGs的开发和实践需要从保证数据质量这一根本做起，这也是世界各国成功开发和应用DRGs的共同经验。
+              <br />
+            </p>
+          </div>
+        </div>
+        <div>
+          <b>购买地址：</b>
+          <br /><br />
+          <a href="http://dwz.cn/1EOIzb" target="_blank">
+            <span id="color">京东：</span>http://dwz.cn/1EOIzb
+          </a>
+          <br /><br />
+          <a href="http://dwz.cn/1EOFKt" target="_blank">
+            <span id="color">当当：</span>http://dwz.cn/1EOFKt
+          </a>
+          <br /><br />
+          <a href="http://dwz.cn/1EOLE2" target="_blank">
+            <span id="color">淘宝：</span>http://dwz.cn/1EOLE2
+          </a>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui grid">
+          <div class="ui five wide column">
+            <img src="<%= static_path(@conn, "/css/home_image/w3.png") %>" style="width:65%;height:80%;">
+          </div>
+          <div class="ui eleven wide column">
+            <p style="line-height:25px;">
+              <b>疾病诊断与手术操作名词术语</b>
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              科学、准确的评价医院临床服务能力，是保证医疗服务质量和安全、控制医疗费用不合理增长以及提高管理绩效的重要前提。目前，DRGs（Diagnosis Related Groups）是国际上较为公认的医院评价方法，也是近些年我们努力推动、希望尽早在中国实现本土化的指标体系。DRGs分组数据基础来自医院出院病历首页的诊疗信息、其信息的准确性、完整性决定了分组的科学性。因此，在国际统一标准的原则下，依照临床医学的不断进展统一我国疾病诊断、治疗标准术语又成为基础的基础。
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              2013年在原北京市卫生局的领导和大力支持下，北京市医院管理研究所DRGs项目组组织北京地区中央、驻京部队、北京市区两级的64家医疗机构的300余名临床、医院管理、病案统计等权威专家，对BJ-DRGs相关术语标准及分组规则开展了为期半年的临床论证工作，共调整了疾病诊断与手术操作术语1万余条，最终整理形成了本套国内最新版的权威临床术语集。
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              本书主要应用于以下几个方面：首先，可供临床医师书写病历时直接选用，也可供临床医师以本书所列名称为基础，细化、扩展书写名称；第二，作为电子病历疾病诊断和手术操作名称基本字典库条目使用；第三，供疾病诊断与手术操作专业编码人员参考；第四，供医疗卫生管理、医疗统计及科研人员病种统计分析参考；第五，供医疗保险管理专业病种分析参考；第六，供病历书写教学参考。
+            </p>
+          </div>
+        </div>
+        <div>
+          <b>购买地址：</b>
+          <br /><br />
+          <a href=" http://dwz.cn/1EOEfX" target="_blank">
+            <span id="color">京东：</span> http://dwz.cn/1EOEfX
+          </a>
+          <br /><br />
+          <a href="http://dwz.cn/1EOLK2" target="_blank">
+            <span id="color">当当：</span>http://dwz.cn/1EOLK2
+          </a>
+          <br /><br />
+          <a href="http://dwz.cn/1EOORQ" target="_blank">
+            <span id="color">淘宝：</span>http://dwz.cn/1EOORQ
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="one wide column">
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(".menu .item").tab()
+
+</script>

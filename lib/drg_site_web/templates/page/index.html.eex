@@ -1,36 +1,311 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
-
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
+<div class="container" style="margin-top:20px;padding-left:0;padding-right:30px;">
+  <!-- 第一行 -->
+  <div class="ui grid">
+    <!-- 工作动态 -->
+    <div class="sixteen wide column">
+      <div class="ui message segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">工作动态</h3>
+          <a href="/working">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
+        </div>
+        <div class="ui grid">
+          <!-- 图片循环 -->
+          <div class="eight wide column">
+            <div id="banner">
+                <div id="banner_bg">
+                </div>
+                <div id="banner_info">
+                  国家卫生计生委医政管理局成立..
+                </div>
+                <ul>
+                  <li class="on">1</li>
+                  <li>2</li>
+                  <li>3</li>
+                  <li>4</li>
+                  <li>5</li>
+                </ul>
+                <div id="banner_list">
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_1.png") %>" width="100%" height="290px"></a></a>
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_2.png") %>" width="100%" height="290px"></a></a>
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_3.png") %>" width="100%" height="290px"></a></a>
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_4.png") %>" width="100%" height="290px"></a></a>
+                    <a href="#" target="_blank"><img src="<%= static_path(@conn, "/css/home_image/image_5.png") %>" width="100%" height="290px"></a></a>
+                </div>
+            </div>
+          </div>
+          <!-- 新闻标题 -->
+          <div class="eight wide column">
+            345
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- 第二行 -->
+  <div class="ui grid">
+    <div class="sixteen wide column">
+      <div class="ui segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">出版资料</h3>
+          <a href="/cn_drgs?data_tab=fourth">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
+        </div>
+        <!-- 代码 开始 -->
+        <div class="ui grid" style="height:300px;">
+          <div class="one wide column"></div>
+          <div class="three wide column">
+            <div class="fcon2" id="book_img1">
+                <a href="/cn_drgs?data_tab=fourth">
+                  <img src="<%= static_path(@conn, "/css/home_image/w1.png") %>" style="width:80%;height:80%;opacity: 1;">
+                </a>
+            </div>
+            <div class="fcon2" id="book_img2" style="display:none;">
+                <a href="/cn_drgs?data_tab=fourth">
+                  <img src="<%= static_path(@conn, "/css/home_image/w2.png") %>" style="width:80%;height:80%;;opacity: 1">
+                </a>
+            </div>
+            <div class="fcon2" id="book_img3" style="display:none;">
+                <a href="/cn_drgs?data_tab=fourth">
+                    <img src="<%= static_path(@conn, "/css/home_image/w3.png") %>" style="width:80%;height:80%;;opacity: 1"></a>
+                </a>
+            </div>
+          </div>
+          <div class="one wide column"></div>
+          <div class="eleven wide column" style="margin-top:15px;">
+            <a href="/cn_drgs?data_tab=fourth" style="color:#000;" id="book_p1">
+              <h4>CN-DRGs分组方案(2014版)</h4>
+              <p style="font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本书是我国首次出版发行的第一本适用于我国疾病和手术编码数据环境的DRGs分组方案。DRGs中文译为疾病诊断相关分组（Diagnosis Related Groups，简称DRGs），是上世纪70年代美国学者研发的一种针对短期住院的病例组合工具。它以出院病历为依据，综合考虑了患者的主要诊断和主要治疗方式，结合个体特征如年龄、并发症和伴随病，根据疾病的复杂程度和费用高低将相似的病例分到同一个组中。基于DRGs分组工具的帮助，卫生管理部门可以对不同的医疗机构和临床学科进行较为客观科学的医疗服务质量绩效评价,医疗保险部门可以对不同医院收治的同质住院病例进行预付费管理。</p>
+            </a>
+            <a href="/cn_drgs?data_tab=fourth" style="color:#000;display:none;" id="book_p2">
+              <h4>北京DRGs系统的研究与应用</h4>
+              <p style="font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本书是我国第一部系统介绍DRGs技术方法和应用方式的专著。涉及DRGs如何分组，如何实现风险调整、如何在医疗服务绩效评价中发挥作用、如何应用于医保支付制度改革等核心问题。对这些问题的体系介绍，不仅有助于科研技术人员了解DRGs的开发和本土化过程，也有助于卫生管理者加深对DRGs应用范围和应用方法的理解。</p>
+              <p style="font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参加本书编写的所有成员均是多年来从事DRGs研究的核心团队成员或应用DRGs进行卫生服务管理的实践者。他们将理论和实践相结合，在书中贡献了BJ-DRGs及其相关支持系统开发过程的第一手经验与实践案。</p>
+            </a>
+            <a href="/cn_drgs?data_tab=fourth" style="color:#000;display:none;" id="book_p3">
+              <h4>疾病诊断与手术操作名词术语</h4>
+              <p style="font-size:16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科学、准确的评价医院临床服务能力，是保证医疗服务质量和安全、控制医疗费用不合理增长以及提高管理绩效的重要前提。目前，DRGs（Diagnosis Related Groups）是国际上较为公认的医院评价方法，也是近些年我们努力推动、希望尽早在中国实现本土化的指标体系。DRGs分组数据基础来自医院出院病历首页的诊疗信息、其信息的准确性、完整性决定了分组的科学性。因此，在国际统一标准的原则下，依照临床医学的不断进展统一我国疾病诊断、治疗标准术语又成为基础的基础。</p>
+            </a>
+          </div>
+        </div>
+        <div class="ui grid">
+          <div class="nine wide column"></div>
+          <div class="three wide column">
+            <div class="ui horizontal list" style="width:100%;margin:0 auto">
+              <a class="item" onclick="change('1')" style="color:#000;">
+                1
+              </a>
+              <a class="item" onclick="change('2')" style="color:#000;">
+                2
+              </a>
+              <a class="item" onclick="change('3')" style="color:#000;">
+                3
+              </a>
+            </div>
+          </div>
+          <div class="four wide column"></div>
+        </div>
+      </div>
 
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
+    </div>
+  </div>
+  <!-- 第三行 -->
+  <div class="ui grid" style="height:200px;">
+    <div class="eight wide column">
+      <!-- 政府文件 -->
+      <div class="ui raised segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">政府文件</h3>
+          <a href="/goverment">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- 发表文献 -->
+    <div class="eight wide column">
+      <div class="ui raised segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">发表文献</h3>
+          <a href="/research">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- 第四行 -->
+  <div class="ui grid">
+    <!-- 国内应用 -->
+    <div class="eight wide column" style="padding-right:0px;">
+      <div class="ui raised segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">国内应用</h3>
+          <a href="/goverment">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- 技术资料 -->
+    <div class="eight wide column">
+      <div class="ui raised segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">技术资料</h3>
+          <a href="/goverment">
+            <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
+          </a>
+        </div>
+        <div  style="margin-top:8px;font-size:13px;">
+          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;CN-DRGs分组方法及相关术语说明</a>
+        </div>
+        <div style="margin-top:9px;font-size:13px;">
+          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-10疾病编码标准</a>
+        </div>
+        <div style="margin-top:9px;font-size:13px;">
+          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-9手术/操作编码标准</a>
+        </div>
+        <div style="margin-top:9px;font-size:13px;">
+          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;收费项目分类标准</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<script type="text/javascript">
+var t = n = 0,
+    count;
+$(document).ready(function() {
+        // 获取图片标签长度
+        count = $("#banner_list a").length;
+        // 不是当前显示的图片隐藏
+        $("#banner_list a:not(:first-child)").hide();
+        // 点击下面的1234按钮，切换图片
+        $("#banner li").click(function() {
+            var i = $(this).text() - 1;
+            if (i + 1 <= 2) {
+              $("#banner_info").text('国家卫生计生委医政管理局成立...')
+            } else if (i + 1 <= 4) {
+              $("#banner_info").text('国家卫生计生委医政医管局举办..')
+            } else {
+              $("#banner_info").text('北京市医院管理局研究所出版..')
+            }
+            n = i;
+            if (i >= count) return;
+            // 淡入淡出效果
+            // $("#banner_list a").filter(":visible").fadeOut(500).parent().children().eq(i).fadeIn(1000);
+            $("#banner_list a").filter(":visible").fadeOut().parent().children().eq(i).fadeIn();
+            // 响应点击
+            $(this).toggleClass("on");
+            // 切换按钮的时候让上一个按钮回归原来的样式
+            $(this).siblings().removeAttr("class");
+        });
+        t = setInterval("showAuto()", 4000);
+        $("#banner").hover(function() {
+                clearInterval(t)
+            },
+            function() {
+                t = setInterval("showAuto()", 4000);
+            });
+    })
+    // 自动轮播
+function showAuto() {
+    n = n >= (count - 1) ? 0 : ++n;
+    $("#banner li").eq(n).trigger('click');
+}
+var show_num = 1;
+function change(num) {
+
+  // $(`#book_img${num}`).removeAttr('class');
+  $(`#book_img${show_num}`).css("display","none")
+  $(`#book_img${num}`).css("display","inherit")
+  $(`#book_p${show_num}`).css("display","none")
+  $(`#book_p${num}`).css("display","inherit")
+  show_num = num
+  // $(this).siblings().removeAttr("class");
+}
+</script>
+
+<style>
+#banner {
+    position: relative;
+    width: 478px;
+    height: 286px;
+    border: 1px solid #666;
+    overflow: hidden;
+}
+
+#banner_list img {
+    border: 0px;
+}
+
+#banner_bg {
+    position: absolute;
+    bottom: 0;
+    background-color: #000;
+    height: 30px;
+    filter: Alpha(Opacity=30);
+    opacity: 0.3;
+    z-index: 1000;
+    cursor: pointer;
+    width: 478px;
+}
+
+#banner_info {
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    height: 22px;
+    color: #fff;
+    z-index: 1001;
+    cursor: pointer
+}
+
+#banner_text {
+    position: absolute;
+    width: 120px;
+    z-index: 1002;
+    right: 3px;
+    bottom: 3px;
+}
+
+#banner ul {
+    position: absolute;
+    list-style-type: none;
+    filter: Alpha(Opacity=80);
+    opacity: 0.8;
+    z-index: 1002;
+    margin: 0;
+    padding: 0;
+    bottom: 3px;
+    right: 5px;
+}
+
+#banner ul li {
+    padding: 0px 8px;
+    float: left;
+    display: block;
+    color: #FFF;
+    background: #3d5164;
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+#banner ul li.on {
+    background-color: #000;
+}
+
+#banner_list a {
+    position: absolute;
+}
+
+#book_list a {
+    position: absolute;
+    margin-top: 0;
+    padding: 0;
+
+}
+</style>

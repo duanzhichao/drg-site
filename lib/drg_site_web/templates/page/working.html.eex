@@ -1,0 +1,28 @@
+<div class="ui grid" style="margin-top:20px;">
+  <!-- 工作动态 -->
+  <div class="two wide column">
+  </div>
+  <div class="twelve wide column">
+    <div class="ui message segment">
+      <div class="ui blue top attached label" style="height:40px;">
+        <h3 style="line-height: 20px;float:left;">工作动态</h3>
+      </div>
+    </div>
+  </div>
+  <div class="two wide column">
+  </div>
+</div>
+<div class="ui grid" style="margin-top:20px;">
+  <!-- 教育培训 -->
+  <div class="two wide column">
+  </div>
+  <div class="twelve wide column">
+    <div class="ui message segment">
+      <div class="ui blue top attached label" style="height:40px;">
+        <h3 style="line-height: 20px;float:left;">教育培训</h3>
+      </div>
+    </div>
+  </div>
+  <div class="two wide column">
+  </div>
+</div>
