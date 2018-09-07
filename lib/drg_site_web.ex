@@ -23,6 +23,8 @@ defmodule DrgSiteWeb do
       import Plug.Conn
       import DrgSiteWeb.Router.Helpers
       import DrgSiteWeb.Gettext
+      import Ecto.Query
+      alias DrgSite.Repo
     end
   end
 

@@ -52,6 +52,6 @@ config :drg_site, DrgSite.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "drg_site_dev",
+  database: "drg_web_dev",
   hostname: "localhost",
   pool_size: 10

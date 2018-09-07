@@ -25,6 +25,22 @@ defmodule DrgSiteWeb.Router do
     get "/test", PageController, :test
   end
 
+  scope "/api/", DrgSiteWeb do
+    pipe_through :api
+
+    resources "/book", BookController, except: [:new, :edit]
+    resources "/doc", DocController, except: [:new, :edit]
+    # resources "/web_doc_html", WebDocHtmlController
+    # resources "/web_user_html", WebUserHtmlController
+    # resources "/web_book_html", WebBookHtmlController
+    # resources "/web_download_record_html", WebDownloadRecordHtmlController
+    # resources "/web_data_download_html", WebDataDownloadHtmlController
+    # resources "/img_upload", ImgUploadController
+    # resources "/file_upload", FileUploadController
+    # resources "/drg_comp_server", DrgCompServerController
+    # resources "/posts", PostController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", DrgSiteWeb do
   #   pipe_through :api
