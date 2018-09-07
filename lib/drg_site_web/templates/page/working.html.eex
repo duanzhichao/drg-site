@@ -1,28 +1,88 @@
-<div class="ui grid" style="margin-top:20px;">
-  <!-- 工作动态 -->
-  <div class="two wide column">
-  </div>
-  <div class="twelve wide column">
-    <div class="ui message segment">
-      <div class="ui blue top attached label" style="height:40px;">
-        <h3 style="line-height: 20px;float:left;">工作动态</h3>
+<div id="index_1">
+  <div class="ui grid" style="margin-top:5px;">
+    <!-- 工作动态 -->
+    <div class="two wide column">
+    </div>
+    <div class="twelve wide column">
+      <div class="ui message segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">工作动态</h3>
+        </div>
+        <div class="ui grid">
+          <div class="sixteen wide column">
+            <div v-for="(item, index) in workDoc">
+              <a href="#" style="font-weight:bold;font-size:11px;margin:5px;">{{item.doc_title}}</a>
+              <span style="float:right;color:gray;font-size:11px;margin:5px;">{{item.doc_time}}</span>
+              <div class="ui divider" style="margin:5px;"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="two wide column">
-  </div>
-</div>
-<div class="ui grid" style="margin-top:20px;">
-  <!-- 教育培训 -->
-  <div class="two wide column">
-  </div>
-  <div class="twelve wide column">
-    <div class="ui message segment">
-      <div class="ui blue top attached label" style="height:40px;">
-        <h3 style="line-height: 20px;float:left;">教育培训</h3>
-      </div>
+    <div class="two wide column">
     </div>
   </div>
-  <div class="two wide column">
+  <div class="ui grid" style="margin-top:20px;">
+    <!-- 教育培训 -->
+    <div class="two wide column">
+    </div>
+    <div class="twelve wide column">
+      <div class="ui message segment">
+        <div class="ui blue top attached label" style="height:40px;">
+          <h3 style="line-height: 20px;float:left;">教育培训</h3>
+        </div>
+        <div class="ui grid">
+          <div class="sixteen wide column">
+            <div v-for="(item, index) in dataDownload">
+              <a href="#" style="font-weight:bold;font-size:11px;margin:5px;">{{item.title}}</a>
+              <span style="float:right;color:gray;font-size:11px;margin:5px;">{{item.time}}</span>
+              <div class="ui divider" style="margin:5px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="two wide column">
+    </div>
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+  Vue.prototype.$ajax = $.ajax;
+  common = new Vue({
+    el: '#index_1',
+    data: {
+      workDoc: [],
+      dataDownload: [],
+    },
+    created: function () {
+      this.getWorkDoc()
+      this.getDataDownload()
+    },
+    methods: {
+      getWorkDoc: function (page) {
+        $.ajax({
+          type: "get",
+          url: '/api/doc?doc_type=工作动态&skip=0&type=query&limit=1000000000',
+          async: false,
+          success: (res) => {
+            this.workDoc = res.data
+          },
+          dataType: 'json'
+        });
+      },
+      getDataDownload: function (page) {
+        $.ajax({
+          type: "get",
+          url: '/api/data_download?type=count&skip=0',
+          async: false,
+          success: (res) => {
+            this.dataDownload = res.data
+          },
+          dataType: 'json'
+        });
+      },
+    }
+  })
+})
+</script>

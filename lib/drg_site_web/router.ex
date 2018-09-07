@@ -22,6 +22,7 @@ defmodule DrgSiteWeb.Router do
     get "/goverment", PageController, :goverment
     get "/application", PageController, :application
     get "/technical", PageController, :technical
+    get "/research", PageController, :research
     get "/test", PageController, :test
   end
 
@@ -31,6 +32,7 @@ defmodule DrgSiteWeb.Router do
     resources "/book", BookController, except: [:new, :edit]
     resources "/doc", DocController, except: [:new, :edit]
     resources "/technical_download", TechnicalDownloadController, except: [:new, :edit]
+    resources "/data_download", DataDownloadController, except: [:new, :edit]
     # resources "/web_doc_html", WebDocHtmlController
     # resources "/web_user_html", WebUserHtmlController
     # resources "/web_book_html", WebBookHtmlController

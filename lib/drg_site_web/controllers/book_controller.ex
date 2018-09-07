@@ -2,23 +2,25 @@ defmodule DrgSiteWeb.BookController do
   use DrgSiteWeb, :controller
 
   alias DrgSite.Book
+  alias DrgSite.Page
 
-  def index(conn, %{"book_type" => book_type, "skip" => skip, "type" => type, "limit" => limit}) do
-    book =
-      case type do
-        "query" ->
-          query = from book in Book,
-            where: book.type == ^book_type,
-            order_by: [asc: book.num],
-            limit: ^limit,
-            offset: ^skip
-          Repo.all(query)
-        "count" ->
-          query = from book in Book,
-            where: book.type == ^book_type
-          Repo.all(query)
-      end
-    render(conn, "index.json", book: book)
+  def index(conn, %{"book_type" => book_type, "type" => type, "limit" => limit}) do
+    %{"page" => page} = Map.merge(%{"page" => "1"}, conn.params)
+    skip = Page.skip(page, limit)
+    query = from(p in Book)
+      |>where([p], p.type == ^book_type)
+    count = query
+      |>select([p], count(p.id))
+      |>Repo.all
+      |>hd
+    [page_num, page_list, _count] = Page.page_list(page, count, limit)
+
+    book = query
+      |>limit([p], ^limit)
+      |> offset([p], ^skip)
+      |> order_by([p], [asc: p.num])
+      |>Repo.all
+    render(conn, "index.json", book: book, page: page, page_list: page_list)
   end
 
   def create(conn, %{"book" => book_params}) do

@@ -8,7 +8,7 @@ defmodule DrgSiteWeb.DocController do
         "query" ->
           query = from doc in Doc,
             where: doc.doc_type == ^doc_type,
-            order_by: [desc: doc.up_time],
+            order_by: [desc: doc.doc_time],
             limit: ^limit,
             offset: ^skip
           Repo.all(query)

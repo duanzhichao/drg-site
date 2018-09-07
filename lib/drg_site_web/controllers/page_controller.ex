@@ -26,6 +26,11 @@ defmodule DrgSiteWeb.PageController do
     render conn, "technical.html"
   end
 
+  def research(conn, _params) do
+    %{"zhpage" => zhpage} = Map.merge(%{"zhpage" => "1"}, conn.params)
+    render conn, "research.html", zhpage: zhpage
+  end
+
   def test(conn, _params) do
     render conn, "test.html", layout: false
   end

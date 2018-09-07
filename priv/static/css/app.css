@@ -41,7 +41,7 @@ form.link, form.button {
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 1260px;
+    max-width: 1100px;
   }
 }
 .container-narrow > hr {
