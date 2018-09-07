@@ -37,8 +37,12 @@
           </div>
           <!-- 新闻标题 -->
           <div class="eight wide column">
-            <div style="margin-top:2px"></div>
-            <h5 v-for="(item, index) in workDoc"><a>{{item.doc_title}}</a></h5>
+            <div v-for="(item, index) in workDoc">
+              <b style="color:#1e70bf;margin-top:0;">·</b>&nbsp;
+              <a href="#" style="font-weight:bold;font-size:12px;">{{item.doc_title}}</a>
+              <span style="float:right;color:gray;font-size:12px;">{{item.doc_time}}</span>
+              <div class="ui divider"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -113,64 +117,84 @@
     </div>
   </div>
   <!-- 第三行 -->
-  <div class="ui grid" style="height:200px;">
+  <div class="ui grid">
     <div class="eight wide column">
       <!-- 政府文件 -->
-      <div class="ui raised segment">
+      <div class="ui message segment">
         <div class="ui blue top attached label" style="height:40px;">
           <h3 style="line-height: 20px;float:left;">政府文件</h3>
           <a href="/goverment">
             <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
           </a>
         </div>
+        <div class="ui grid">
+          <div class="sixteen wide column">
+            <div v-for="(item, index) in govermentDoc">
+              <a href="#" style="font-weight:bold;font-size:11px;">{{item.doc_title}}</a>
+              <span style="float:right;color:gray;font-size:11px;">{{item.doc_time}}</span>
+              <div class="ui divider" v-if="index !== 4"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- 发表文献 -->
     <div class="eight wide column">
-      <div class="ui raised segment">
+      <div class="ui message segment">
         <div class="ui blue top attached label" style="height:40px;">
           <h3 style="line-height: 20px;float:left;">发表文献</h3>
           <a href="/research">
             <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
           </a>
         </div>
+        <div class="ui grid">
+          <div class="sixteen wide column">
+            <div v-for="(item, index) in book">
+              <a href="#" style="font-weight:bold;font-size:11px;">{{item.name}}</a>
+              <div class="ui divider" v-if="index !== 4"></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
   <!-- 第四行 -->
   <div class="ui grid">
-    <!-- 国内应用 -->
-    <div class="eight wide column" style="padding-right:0px;">
-      <div class="ui raised segment">
+    <div class="eight wide column">
+      <!-- 国内应用 -->
+      <div class="ui message segment">
         <div class="ui blue top attached label" style="height:40px;">
           <h3 style="line-height: 20px;float:left;">国内应用</h3>
           <a href="/goverment">
             <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
           </a>
         </div>
+        <div class="ui grid">
+          <div class="sixteen wide column">
+            <div v-for="(item, index) in application">
+              <a href="#" style="font-weight:bold;font-size:11px;">{{item.doc_title}}</a>
+              <div class="ui divider" v-if="index !== 2"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- 技术资料 -->
     <div class="eight wide column">
-      <div class="ui raised segment">
+      <div class="ui message segment">
         <div class="ui blue top attached label" style="height:40px;">
           <h3 style="line-height: 20px;float:left;">技术资料</h3>
-          <a href="/goverment">
+          <a href="/research">
             <span style="line-height: 20px;float:right;font-size:10px;">更多>></span>
           </a>
         </div>
-        <div  style="margin-top:8px;font-size:13px;">
-          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;CN-DRGs分组方法及相关术语说明</a>
-        </div>
-        <div style="margin-top:9px;font-size:13px;">
-          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-10疾病编码标准</a>
-        </div>
-        <div style="margin-top:9px;font-size:13px;">
-          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;ICD-9手术/操作编码标准</a>
-        </div>
-        <div style="margin-top:9px;font-size:13px;">
-          <a href="/technical" id="shuyushuoming"><b>·</b>&nbsp;收费项目分类标准</a>
+        <div class="ui grid">
+          <div class="sixteen wide column">
+            <div v-for="(item, index) in technical">
+              <a href="#" style="font-weight:bold;font-size:11px;">{{item.file_name}}</a>
+              <div class="ui divider" v-if="index !== 2"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -182,7 +206,11 @@ $(document).ready(function() {
   common = new Vue({
     el: '#index_1',
     data: {
-      workDoc: []
+      workDoc: [],
+      govermentDoc: [],
+      book: [],
+      application: [],
+      technical: []
       // selectSearch: 'mdc',
       // searchInfo: '',
       // searchTable: [],
@@ -191,6 +219,10 @@ $(document).ready(function() {
     },
     created: function () {
       this.getWorkDoc()
+      this.getGovermentDoc()
+      this.getBook()
+      this.getApplication()
+      this.getTechnical()
     },
     methods: {
       getWorkDoc: function (page) {
@@ -199,14 +231,96 @@ $(document).ready(function() {
           url: '/api/doc?doc_type=工作动态&skip=0&type=query&limit=6',
           async: false,
           success: (res) => {
+            const data = []
             res.data.forEach((x) => {
-              console.log(x);
+              if (x.doc_title.length > 22) {
+                x.doc_title = `${x.doc_title.substring(0,22)}..`
+              }
+              data.push(x)
             })
-            this.workDoc = res.data
-            // this.searchTable = data.table
-            // this.page_num = data.page_num
-            // this.page_list = data.page_list
-            // $("#search_table").css('display','inline-table');
+            this.workDoc = data
+          },
+          dataType: 'json'
+        });
+      },
+      getGovermentDoc: function (page) {
+        $.ajax({
+          type: "get",
+          url: '/api/doc?doc_type=国家卫计委文件&skip=0&type=query&limit=5',
+          async: false,
+          success: (res) => {
+            const data = []
+            res.data.forEach((x) => {
+              if (x.doc_title.length > 22) {
+                x.doc_title = `${x.doc_title.substring(0,22)}..`
+              }
+              data.push(x)
+            })
+            this.govermentDoc = data
+          },
+          dataType: 'json'
+        });
+      },
+      getBook: function (page) {
+        $.ajax({
+          type: "get",
+          url: '/api/book?book_type=国内&skip=0&type=query&limit=5',
+          async: false,
+          success: (res) => {
+            const data = []
+            res.data.forEach((x) => {
+              if (x.name.length > 22) {
+                x.name = `${x.name.substring(0,22)}..`
+              }
+              data.push(x)
+            })
+            this.book = data
+          },
+          dataType: 'json'
+        });
+      },
+      // 绩效评价应用
+      getApplication: function (page) {
+        $.ajax({
+          type: "get",
+          url: '/api/doc?doc_type=付费改革应用&skip=0&type=query&limit=3',
+          async: false,
+          success: (res) => {
+            const data = []
+            res.data.forEach((x) => {
+              if (x.doc_title.length > 22) {
+                x.doc_title = `${x.doc_title.substring(0,22)}..`
+              }
+              data.push(x)
+            })
+            this.application = data
+          },
+          dataType: 'json'
+        });
+        $.ajax({
+          type: "get",
+          url: '/api/doc?doc_type=绩效评价应用&skip=0&type=query&limit=1',
+          async: false,
+          success: (res) => {
+            const data = []
+            res.data.forEach((x) => {
+              if (x.doc_title.length > 22) {
+                x.doc_title = `${x.doc_title.substring(0,22)}..`
+              }
+              this.application.push(x)
+            })
+          },
+          dataType: 'json'
+        });
+      },
+      // 绩效评价应用
+      getTechnical: function (page) {
+        $.ajax({
+          type: "get",
+          url: '/api/technical_download?type=&skip=0&limit=3',
+          async: false,
+          success: (res) => {
+            this.technical = res.data
           },
           dataType: 'json'
         });
@@ -214,7 +328,6 @@ $(document).ready(function() {
       jump: function (a, b, c, d) {
         window.location.href = '/hospitals/details?code=' + a +'&table=' + c + '&version=' + b + '&name=' + d;
       },
-
     }
   })
 })

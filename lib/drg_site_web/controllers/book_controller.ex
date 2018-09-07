@@ -3,19 +3,21 @@ defmodule DrgSiteWeb.BookController do
 
   alias DrgSite.Book
 
-  def index(conn, %{"type" => type, "skip" => skip, "style" => style}) do
+  def index(conn, %{"book_type" => book_type, "skip" => skip, "type" => type, "limit" => limit}) do
     book =
-    case style do
-      "sql" -> query = from book in Book,
-                where: book.type == ^type,
-                order_by: [asc: book.num],
-                limit: 5,
-                offset: ^skip
-                Repo.all(query)
-      "count" -> query = from book in Book,
-                where: book.type == ^type
-                Repo.all(query)
-    end
+      case type do
+        "query" ->
+          query = from book in Book,
+            where: book.type == ^book_type,
+            order_by: [asc: book.num],
+            limit: ^limit,
+            offset: ^skip
+          Repo.all(query)
+        "count" ->
+          query = from book in Book,
+            where: book.type == ^book_type
+          Repo.all(query)
+      end
     render(conn, "index.json", book: book)
   end
 

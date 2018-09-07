@@ -30,6 +30,7 @@ defmodule DrgSiteWeb.Router do
 
     resources "/book", BookController, except: [:new, :edit]
     resources "/doc", DocController, except: [:new, :edit]
+    resources "/technical_download", TechnicalDownloadController, except: [:new, :edit]
     # resources "/web_doc_html", WebDocHtmlController
     # resources "/web_user_html", WebUserHtmlController
     # resources "/web_book_html", WebBookHtmlController
