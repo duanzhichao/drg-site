@@ -16,7 +16,6 @@ defmodule DrgSiteWeb.Router do
 
   scope "/", DrgSiteWeb do
     pipe_through :browser # Use the default browser stack
-
     get "/", PageController, :index
     get "/cn_drgs", PageController, :cn_drgs
     get "/working", PageController, :working
@@ -29,26 +28,20 @@ defmodule DrgSiteWeb.Router do
     get "/login", PageController, :login
   end
 
+  scope "/admin/", DrgSiteWeb do
+    pipe_through :browser # Use the default browser stack
+    get "/", AdminController, :index
+  end
+
   scope "/api/", DrgSiteWeb do
     pipe_through :api
-
     get "/download_key", PageController, :download_key
     post "/login", UserController, :login
-
     resources "/book", BookController, except: [:new, :edit]
     resources "/doc", DocController, except: [:new, :edit]
     resources "/technical_download", TechnicalDownloadController, except: [:new, :edit]
     resources "/data_download", DataDownloadController, except: [:new, :edit]
     resources "/user", UserController, except: [:new, :edit]
-    # resources "/web_doc_html", WebDocHtmlController
-    # resources "/web_user_html", WebUserHtmlController
-    # resources "/web_book_html", WebBookHtmlController
-    # resources "/web_download_record_html", WebDownloadRecordHtmlController
-    # resources "/web_data_download_html", WebDataDownloadHtmlController
-    # resources "/img_upload", ImgUploadController
-    # resources "/file_upload", FileUploadController
-    # resources "/drg_comp_server", DrgCompServerController
-    # resources "/posts", PostController
   end
 
   # Other scopes may use custom stacks.
