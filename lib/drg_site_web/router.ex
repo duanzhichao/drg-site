@@ -25,6 +25,7 @@ defmodule DrgSiteWeb.Router do
     get "/technical", PageController, :technical
     get "/research", PageController, :research
     get "/edit", PageController, :edit
+    get "/file", PageController, :file
     get "/test", PageController, :test
   end
 

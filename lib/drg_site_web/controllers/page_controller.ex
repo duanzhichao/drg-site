@@ -35,6 +35,10 @@ defmodule DrgSiteWeb.PageController do
     render conn, "edit.html", type: type, id: id
   end
 
+  def file(conn, %{"id" => id}) do
+    render conn, "file.html", id: id
+  end
+
   def test(conn, _params) do
     render conn, "test.html", layout: false
   end

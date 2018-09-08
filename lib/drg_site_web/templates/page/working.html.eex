@@ -34,9 +34,9 @@
         <div class="ui grid">
           <div class="sixteen wide column">
             <div v-for="(item, index) in dataDownload">
-              <a href="#" style="font-weight:bold;font-size:11px;margin:5px;">{{item.title}}</a>
-              <span style="float:right;color:gray;font-size:11px;margin:5px;">{{item.time}}</span>
-              <div class="ui divider" style="margin:5px;"></div>
+              <a v-bind:href="`file?id=${item.id}`" style="font-weight:bold;font-size:12px;margin:7px;">{{item.title}}</a>
+              <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.time}}</span>
+              <div class="ui divider" style="margin:7px;"></div>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@ $(document).ready(function() {
       this.getDataDownload()
     },
     methods: {
-      getWorkDoc: function (page) {
+      getWorkDoc: function () {
         $.ajax({
           type: "get",
           url: '/api/doc?doc_type=工作动态&skip=0&type=query&limit=1000000000',
@@ -71,10 +71,10 @@ $(document).ready(function() {
           dataType: 'json'
         });
       },
-      getDataDownload: function (page) {
+      getDataDownload: function () {
         $.ajax({
           type: "get",
-          url: '/api/data_download?type=count&skip=0',
+          url: '/api/data_download?type=query&skip=0&limit=100',
           async: false,
           success: (res) => {
             this.dataDownload = res.data

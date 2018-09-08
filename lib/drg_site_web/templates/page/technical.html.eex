@@ -96,7 +96,7 @@
           <div class="ui grid">
             <div class="sixteen wide column">
               <div v-for="(item, index) in technical4">
-                <a style="font-weight:bold;font-size:12px;margin:7px;">{{item.title}}</a>
+                <a v-bind:href="`file?id=${item.id}`" style="font-weight:bold;font-size:12px;margin:7px;">{{item.title}}</a>
                 <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.time}}</span>
                 <div class="ui divider" style="margin:7px;"></div>
               </div>
