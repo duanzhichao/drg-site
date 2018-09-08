@@ -20,7 +20,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(data, index) in book" style="font-size:12px;">
+                <tr v-for="(data, index) in zhbook" style="font-size:12px;">
                   <td>{{data.num}}</td>
                   <td>{{data.name}}</td>
                   <td>{{data.from}}</td>
@@ -30,7 +30,7 @@
             </table>
             <div class="ui right floated pagination menu">
               <a v-for="p in zhpages" v-bind:class="{'disabled item': p.page == zhpage, 'item': p.page !== zhpage}"
-                v-bind:href="generateUrl(p.page)">{{p.num}}</a>
+                v-bind:href="generateUrl(p.page, 'zh')">{{p.num}}</a>
            </div>
           </div>
         </div>
@@ -40,21 +40,38 @@
     </div>
   </div>
   <div class="ui grid" style="margin-top:5px;">
-    <!-- 国家人社部文件 -->
+    <!-- 国外研究 -->
     <div class="two wide column">
     </div>
     <div class="twelve wide column">
       <div class="ui message segment">
         <div class="ui blue top attached label" style="height:40px;">
-          <h3 style="line-height: 20px;float:left;">国家人社部文件</h3>
+          <h3 style="line-height: 20px;float:left;">国外研究</h3>
         </div>
         <div class="ui grid">
           <div class="sixteen wide column">
-            <div v-for="(item, index) in govermentDoc2">
-              <a href="#" style="font-weight:bold;font-size:11px;margin:5px;">{{item.doc_title}}</a>
-              <span style="float:right;color:gray;font-size:11px;margin:5px;">{{item.doc_time}}</span>
-              <div class="ui divider" style="margin:5px;"></div>
-            </div>
+            <table class="ui table"  style="border-width:0px;">
+              <thead>
+                <tr style="font-size:12px;">
+                  <th class="one wide"></th>
+                  <th class="six wide">文献名称</th>
+                  <th class="five wide">摘自</th>
+                  <th class="four wide">文章作者</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(data, index) in enbook" style="font-size:12px;">
+                  <td>{{data.num}}</td>
+                  <td>{{data.name}}</td>
+                  <td>{{data.from}}</td>
+                  <td>{{data.author}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="ui right floated pagination menu">
+              <a v-for="p in enpages" v-bind:class="{'disabled item': p.page == enpage, 'item': p.page !== enpage}"
+                v-bind:href="generateUrl(p.page, 'en')">{{p.num}}</a>
+           </div>
           </div>
         </div>
       </div>
@@ -63,28 +80,40 @@
     </div>
   </div>
   <div class="ui grid" style="margin-top:5px;">
-    <!-- 各省市文件 -->
     <div class="two wide column">
     </div>
     <div class="twelve wide column">
       <div class="ui message segment">
-        <div class="ui blue top attached label" style="height:40px;">
-          <h3 style="line-height: 20px;float:left;">各省市文件</h3>
+        <div class="ui blue top attached label">
+          <span style="float:left">世界DRGs</span>
         </div>
-        <div class="ui grid">
-          <div class="sixteen wide column">
-            <div v-for="(item, index) in govermentDoc3">
-              <a href="#" style="font-weight:bold;font-size:11px;margin:5px;">{{item.doc_title}}</a>
-              <span style="float:right;color:gray;font-size:11px;margin:5px;">{{item.doc_time}}</span>
-              <div class="ui divider" style="margin:5px;"></div>
-            </div>
-          </div>
-        </div>
+        <p>
+          <h3 class="ui center aligned header">诊断相关组（DRGs）在世界各国的发展</h3>
+        </p>
+        <p id="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          “诊断相关组（Diagnosis-relatedGroups，DRGs）”诞生于上世界60年代末的美国。由于1980年代应用于美国的“老人医疗保险（Medicare）”的支付制度改革，此后传入欧洲、澳洲及亚洲部分地区，在世界范围内广泛应用。中国的学者自1980年代末开始关注DRGs，随后进行过大规模的研究。最近，随着中国新一轮卫生体制改革部分的推进，一些基础条件较好的地区，开始将DRGs应用于医疗管理的实际工作当中。现将DRGs的起源及其在各国的发展介绍如下:
+        </p>
+        <p id="line"><b>1、DRGs的开发、应用和传播</b>
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          第一代DRGs系统于1967年由美国耶鲁大学RobertB.Fetter及其团队开发（下称“YaleDRGs”）。此后逐渐在医疗管理研究中应用。1970s年代末，YaleDRGs在美国新泽西州的支付制度试点改革中应用，随后进行了改版。这次改版的特出特征是，把临床医生纳入了研究团队，并把临床医生对病例类别划分的意见作为重要的DRG分组依据。1983年，美国国会立法，老年医疗保险（Medicare）应用基于DRGs的预付费制度（DRGs-PPS）。随后，DRGs陆续被欧洲、澳洲和部分亚洲国家引进，应用于这些国家的医疗服务管理当中。在2003年，有研究报道称，世界上应用DRGs的国家超过25个。加上最近几年的发展，估计目前全世界应用DRGs的国家已经超过30个。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在DRGs被世界各国引进并应用的过程中，产生了多个本土化的DRGs版本，例如澳洲的AR-DRGs、芬兰等北欧国家使用的Nord DRGs、英国的HRG、法国的GHM、德国的G-DRGs，等等。再加上美国本土的DRGs在不断发展，产生出CMS-DRGs、AP-DRGs、APR-DRGs等多个版本。据不完全共计，目前这些版本总结超过了25个，形成了所谓的“DRGs家族”（如图1所示）。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在DRGs家族中，2008年开发完成的北京版DRGs（BJ-DRGs），其主要“师承”的是美国的AP-DRGs和澳大利亚的AR-DRGs。
+        </p>
+        <img class="ui centered image" src="<%= static_path(@conn, "/css/home_image/drgs_image.png") %>" style="width:80%;height:80%">
+        <p id="line"><b>2、不同版本DRGs的区别和联系</b>
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1970年代末美国新泽西州试点应用以后，DRGs在编码系统和分组规则上都进行了比较大的调整；尤其是在团队中加入了临床医生，使得改版后的DRGs在“临床可接受性”方面大大提升。自此，DRGs的分组过程基本定型，即分三个步骤：第一步，将大部分病例按照解剖系统分为“疾病大类（MDC）”；第二部，从MDC细分为基干DRGs（ADRGs）；第三步，从ADRGs再次细分为DRGs。MDC划分的过程通常只使用主要诊断编码。从MDC到ADRGs过程则会同时使用主要诊断编码和主要操作编码；而从ADRGs到DRGs这个过程会用到其他诊断和操作，以及反映病例个体特征的其他变量。
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不同版本DRGs的区别，主要体现在分组设计的细节问题和编码系统的使用上面。本为以美国AP-DRGs、澳洲AR-DRGs和北京BJ-DRGs的比较为例，展示不同版本DRGs在设计要点上的区别。如表1所示，这三个版本的主要区别在四个方面：
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一，在AR-DRGs中，HIV感染病例、其他传染病和寄生虫感染病例一道放到了MDC18中，而多发严重创伤、伤害、中毒病例一道放到了MDC21.然而，在AP-DRGs和BJ-DRGs中，HIV感染病例和多发创伤病例分别是两个独立的MDC。于是，AP-DRGs和BJ-DRGs拥有25个MDC，而AR-DRGs只有23个MDC；
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二，AP-DRGs使用ICD-9诊断和操作编码，而AR-DRGs使用ICD-10。与之不同的是，BJ-DRGs的诊断编码用ICD-10而操作编码用ICD-9；值得注意的是，DRGs虽然使用ICD作为基础，但是在实际应用时，往往不直接使用WHO的ICD，而是在WHO的ICD基础上构建本地的临床版本（如美国ICD-CM、澳大利亚的ICD-AM及北京的ICD-BM）；
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三，AP-DRGs将DRGs分为内科类和外科类；而AR-DRGs和BJ-DRGs除了内、外科的划分外，将非手术室手术的病例单列为一类DRGs；
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第四，大多数的DRGs版本都会对“并发症和合并症（CC）”分级（利用处主要诊断外的其他诊断来判别）。这三个DRGs也不例外。它们之间的区别是，AP-DRGs和BJ-DRGs中，所有的DRGs都使用同一张CC表，潜在假设是CC表中各类合并症和并发症对不同的DRGs组的影响是相似的。而AR-DRGs则将CC表中的合并症和并发症与DRG本身关联起来，使得同一个合并症或并发症，对不同的DRG有不同分数。
+        </p>
+        <img class="ui centered image" src="<%= static_path(@conn, "/css/home_image/drgs_image1.png") %>" style="width:60%;height:60%">
       </div>
     </div>
     <div class="two wide column">
     </div>
-  </div>
+</div>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -92,17 +121,20 @@ $(document).ready(function() {
   common = new Vue({
     el: '#index_1',
     data: {
-      book: [],
-      govermentDoc2: [],
-      govermentDoc3: [],
+      zhbook: [],
       zhpages: [],
       zhpage: 1,
+      // 国外
+      enbook: [],
+      enpages: [],
+      enpage: 1,
     },
     created: function () {
-      this.getBook()
+      this.getBook1()
+      this.getBook2()
     },
     methods: {
-      getBook: function (page) {
+      getBook1: function (page) {
         $.ajax({
           type: "get",
           url: '/api/book?book_type=国内&type=query&limit=7&page=<%=@zhpage%>',
@@ -110,17 +142,32 @@ $(document).ready(function() {
           success: (res) => {
             this.zhpages = res.page_list
             this.zhpage = res.page;
-            this.book = res.data
+            this.zhbook = res.data
           },
           dataType: 'json'
         });
       },
-      generateUrl: function(num) {
+      getBook2: function (page) {
+        $.ajax({
+          type: "get",
+          url: '/api/book?book_type=国外&type=query&limit=7&page=<%=@enpage%>',
+          async: false,
+          success: (res) => {
+            this.enpages = res.page_list
+            this.enpage = res.page;
+            this.enbook = res.data
+          },
+          dataType: 'json'
+        });
+      },
+      generateUrl: function(num, type) {
         let url = '';
         if(this.page === parseInt(num)) {
           url = '###'
-        } else {
-          url = `/research?zhpage=${num}`
+        } else if (type === 'zh') {
+          url = `/research?zhpage=${num}&enpage=<%=@enpage%>`
+        } else if (type === 'en') {
+          url = `/research?enpage=${num}&zhpage=<%=@zhpage%>`
         }
         return url
       },

@@ -11,6 +11,7 @@ defmodule DrgSiteWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
   end
 
   scope "/", DrgSiteWeb do
@@ -23,16 +24,20 @@ defmodule DrgSiteWeb.Router do
     get "/application", PageController, :application
     get "/technical", PageController, :technical
     get "/research", PageController, :research
+    get "/edit", PageController, :edit
     get "/test", PageController, :test
   end
 
   scope "/api/", DrgSiteWeb do
     pipe_through :api
 
+    post "/login", UserController, :login
+
     resources "/book", BookController, except: [:new, :edit]
     resources "/doc", DocController, except: [:new, :edit]
     resources "/technical_download", TechnicalDownloadController, except: [:new, :edit]
     resources "/data_download", DataDownloadController, except: [:new, :edit]
+    resources "/user", UserController, except: [:new, :edit]
     # resources "/web_doc_html", WebDocHtmlController
     # resources "/web_user_html", WebUserHtmlController
     # resources "/web_book_html", WebBookHtmlController

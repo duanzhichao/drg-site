@@ -23,15 +23,31 @@ defmodule DrgSiteWeb.PageController do
   end
 
   def technical(conn, _params) do
-    render conn, "technical.html"
+    render conn, "technical.html", user: session(conn)
   end
 
   def research(conn, _params) do
-    %{"zhpage" => zhpage} = Map.merge(%{"zhpage" => "1"}, conn.params)
-    render conn, "research.html", zhpage: zhpage
+    %{"zhpage" => zhpage, "enpage" => enpage} = Map.merge(%{"zhpage" => "1", "enpage" => "1"}, conn.params)
+    render conn, "research.html", zhpage: zhpage, enpage: enpage
+  end
+
+  def edit(conn, %{"type" => type, "id" => id}) do
+    render conn, "edit.html", type: type, id: id
   end
 
   def test(conn, _params) do
     render conn, "test.html", layout: false
+  end
+
+  defp session(conn) do
+    user = get_session(conn, :user)
+    case user do
+      nil -> %{login: false, username: ""}
+      _ ->
+        case user.login do
+          false -> %{login: false, username: ""}
+          true -> %{login: true, username: user.username}
+        end
+    end
   end
 end

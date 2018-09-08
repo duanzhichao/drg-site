@@ -11,7 +11,7 @@
         <div class="ui grid">
           <div class="sixteen wide column">
             <div v-for="(item, index) in application1">
-              <a href="#" style="font-weight:bold;font-size:11px;margin:5px;">{{item.doc_title}}</a>
+              <a v-bind:href="`edit?type=国内应用-${item.doc_type}-application&id=${item.id}`" style="font-weight:bold;font-size:11px;margin:5px;">{{item.doc_title}}</a>
               <span style="float:right;color:gray;font-size:11px;margin:5px;">{{item.doc_time}}</span>
               <div class="ui divider" style="margin:5px;"></div>
             </div>
@@ -33,7 +33,7 @@
         </div>
         <div class="sixteen wide column">
           <div v-for="(item, index) in application2">
-            <a href="#" style="font-weight:bold;font-size:11px;margin:5px;">{{item.doc_title}}</a>
+            <a v-bind:href="`edit?type=国内应用-${item.doc_type}-application&id=${item.id}`" style="font-weight:bold;font-size:11px;margin:5px;">{{item.doc_title}}</a>
             <span style="float:right;color:gray;font-size:11px;margin:5px;">{{item.doc_time}}</span>
             <div class="ui divider" style="margin:5px;"></div>
           </div>

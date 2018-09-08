@@ -3,12 +3,12 @@ defmodule DrgSiteWeb.DataDownloadController do
 
   alias DrgSite.DataDownload
 
-  def index(conn, %{"skip" => skip, "type" => type}) do
+  def index(conn, %{"skip" => skip, "type" => type, "limit" => limit}) do
     data_download =
     case type do
-      "sql" ->  query = from data_download in DataDownload,
+      "query" ->  query = from data_download in DataDownload,
                   order_by: [asc: data_download.time],
-                  limit: 10,
+                  limit: ^limit,
                   offset: ^skip
                 Repo.all(query)
       "count" -> Repo.all(from p in DataDownload, order_by: [desc: p.time])

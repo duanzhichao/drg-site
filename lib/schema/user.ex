@@ -1,7 +1,7 @@
-defmodule DrgSite.WebUser do
+defmodule DrgSite.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias DrgSite.WebUser
+  alias DrgSite.User
   # alias Comeonin.Bcrypt
 
   schema "web_user" do
@@ -20,8 +20,8 @@ defmodule DrgSite.WebUser do
     # timestamps
   end
 
-  def changeset(%WebUser{} = web_user, attrs) do
-    web_user
+  def changeset(%User{} = user, attrs) do
+    user
     |> cast(attrs, [:username, :hashpw, :org_code, :org_name, :phone, :address, :person, :time, :email, :type, :admin])
     |> validate_required([:username, :hashpw, :org_code, :org_name, :phone, :address, :person, :time, :email, :type, :admin])
   end

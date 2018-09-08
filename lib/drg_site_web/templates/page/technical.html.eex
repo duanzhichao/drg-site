@@ -1,43 +1,190 @@
-
-<div class="ui grid" style="margin-top:30px;margin-bottom:250px;">
-  <!-- 登录 -->
-  <div class="four wide column">
-  </div>
-  <div class="eight wide column">
-    <div class="ui message segment">
-      <div class="ui blue top attached label" style="height:40px;">
-        <h4 style="line-height: 20px;float:left;">登录</h4>
+<div style="margin-top:5px;" id="index_1">
+  <%= unless(@user.login)do %>
+    <div class="ui grid" style="margin-bottom:250px;">
+      <!-- 登录 -->
+      <div class="four wide column">
       </div>
-      <div class="ui grid">
-        <div class="eight wide column">
-          <div class="input-group">
-            <h5>用户名</h5>
-            <input class="form-control" type="text" placeholder="用户名" aria-describedby="basic-addon1" name="username" id="username"/>
+      <div class="eight wide column">
+        <div class="ui message segment">
+          <div class="ui blue top attached label" style="height:40px;">
+            <h4 style="line-height: 20px;float:left;">登录</h4>
           </div>
-          <br />
-          <div class="input-group">
-            <h5>密码</h5>
-            <input class="form-control" type="password" placeholder="密码" aria-describedby="basic-addon1" name="password" id="password"/>
-          </div>
-          <br />
-          <div class="input-group button">
-            <button class="btn btn-default login" type="button" id="login">登录</button><a href="/regiester">
-              <button class="btn btn-default register" type="button">注册</button></a>
+          <div class="ui grid">
+            <div class="eight wide column">
+              <div class="input-group">
+                <h5>用户名</h5>
+                <input class="form-control" type="text" placeholder="用户名" aria-describedby="basic-addon1" v-model="user.username"/>
+              </div>
+              <br />
+              <div class="input-group">
+                <h5>密码</h5>
+                <input class="form-control" type="password" placeholder="密码" aria-describedby="basic-addon1" v-model="user.password"/>
+              </div>
+              <br />
+              <div class="input-group button">
+                <button class="btn btn-default login" type="button" v-on:click="login()">登录</button>&nbsp;&nbsp;
+                <a href="/regiester"><button class="btn btn-default register" type="button">注册</button></a>
+              </div>
+            </div>
+            <div class="eight wide column">
+              <div>
+                <h4 class="ui center aligned header">扫描二维码,关注公众号</h4>
+              </div>
+              <br />
+              <br />
+              <div>
+                <div><img class="ui centered medium image" src="<%= static_path(@conn, "/css/home_image/qrcode_258.jpg") %>" style="width:120px;"/></div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="eight wide column">
-          <div>
-            <h4 class="ui center aligned header">扫描二维码,关注公众号</h4>
-          </div>
-          <br />
-          <br />
-          <div>
-            <div><img class="ui centered medium image" src="<%= static_path(@conn, "/css/home_image/qrcode_258.jpg") %>" style="width:120px;"/></div>
-          </div>
-        </div>
+      </div>
+      <div class="four wide column">
       </div>
     </div>
-  </div>
-  <div class="four wide column">
-  </div>
+  <% else %>
+    <div class="ui grid">
+      <div class="two wide column">
+      </div>
+      <div class="twelve wide column">
+        <div class="ui message segment">
+          <div class="ui blue top attached label" style="height:40px;">
+            <h3 style="line-height: 20px;float:left;">基础理论研究</h3>
+          </div>
+          <div class="ui grid">
+            <div class="sixteen wide column">
+              <div v-for="(item, index) in technical1">
+                <a style="font-weight:bold;font-size:12px;margin:7px;">{{item.file_name}}</a>
+                <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.doc_time}}</span>
+                <div class="ui divider" style="margin:7px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui message segment">
+          <div class="ui blue top attached label" style="height:40px;">
+            <h3 style="line-height: 20px;float:left;">绩效评价研究</h3>
+          </div>
+          <div class="ui grid">
+            <div class="sixteen wide column">
+              <div v-for="(item, index) in technical2">
+                <a style="font-weight:bold;font-size:12px;margin:7px;">{{item.file_name}}</a>
+                <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.doc_time}}</span>
+                <div class="ui divider" style="margin:7px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui message segment">
+          <div class="ui blue top attached label" style="height:40px;">
+            <h3 style="line-height: 20px;float:left;">付费研究</h3>
+          </div>
+          <div class="ui grid">
+            <div class="sixteen wide column">
+              <div v-for="(item, index) in technical3">
+                <a style="font-weight:bold;font-size:12px;margin:7px;">{{item.file_name}}</a>
+                <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.doc_time}}</span>
+                <div class="ui divider" style="margin:7px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui message segment">
+          <div class="ui blue top attached label" style="height:40px;">
+            <h3 style="line-height: 20px;float:left;">培训资料</h3>
+          </div>
+          <div class="ui grid">
+            <div class="sixteen wide column">
+              <div v-for="(item, index) in technical4">
+                <a style="font-weight:bold;font-size:12px;margin:7px;">{{item.title}}</a>
+                <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.time}}</span>
+                <div class="ui divider" style="margin:7px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="two wide column">
+      </div>
+    </div>
+  <% end %>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+  Vue.prototype.$ajax = $.ajax;
+  common = new Vue({
+    el: '#index_1',
+    data: {
+      user: { username: '', password: '' },
+      technical1: [],
+      technical2: [],
+      technical3: [],
+      technical4: [],
+    },
+    created: function () {
+      this.getTechnical();
+    },
+    methods: {
+      login: function () {
+        if (this.user.username === '' || this.user.password === '') {
+          alert('用户名和密码填写完整')
+        } else {
+          $.ajax({
+            type: "post",
+            url: '/api/login',
+            data: { user: this.user },
+            async: false,
+            success: (res) => {
+              if(res.login){
+                window.location.href = "/technical"
+              }else{
+                alert('用户名密码错误')
+              }
+            },
+            dataType: 'json'
+          });
+        }
+      },
+      // 绩效评价应用
+      getTechnical: function () {
+        $.ajax({
+          type: "get",
+          url: '/api/technical_download?type=基础理论研究&skip=0&limit=100',
+          async: false,
+          success: (res) => {
+            this.technical1 = res.data
+          },
+          dataType: 'json'
+        });
+        $.ajax({
+          type: "get",
+          url: '/api/technical_download?type=绩效评价研究&skip=0&limit=100',
+          async: false,
+          success: (res) => {
+            this.technical2 = res.data
+          },
+          dataType: 'json'
+        });
+        $.ajax({
+          type: "get",
+          url: '/api/technical_download?type=付费研究&skip=0&limit=100',
+          async: false,
+          success: (res) => {
+            this.technical3 = res.data
+          },
+          dataType: 'json'
+        });
+        $.ajax({
+          type: "get",
+          url: '/api/data_download?type=query&skip=0&limit=100',
+          async: false,
+          success: (res) => {
+            this.technical4 = res.data
+          },
+          dataType: 'json'
+        });
+      },
+    }
+  })
+})
+</script>
