@@ -1,5 +1,6 @@
 defmodule DrgSiteWeb.PageController do
   use DrgSiteWeb, :controller
+  alias DrgSite.Download
 
   def index(conn, _params) do
     render conn, "index.html"
@@ -23,7 +24,7 @@ defmodule DrgSiteWeb.PageController do
   end
 
   def technical(conn, _params) do
-    render conn, "technical.html", user: session(conn)
+    render conn, "technical.html", user: is_login(conn)
   end
 
   def research(conn, _params) do
@@ -39,11 +40,17 @@ defmodule DrgSiteWeb.PageController do
     render conn, "file.html", id: id
   end
 
-  def test(conn, _params) do
-    render conn, "test.html", layout: false
+  def login(conn, _params) do
+    conn = put_session(conn, :user, %{login: false, username: ""})
+    render conn, "technical.html", user: is_login(conn)
   end
 
-  defp session(conn) do
+  def download_key(conn, %{"filename" => filename}) do
+    key = Download.getChecksum(filename)
+    json conn, %{key: key}
+  end
+
+  defp is_login(conn) do
     user = get_session(conn, :user)
     case user do
       nil -> %{login: false, username: ""}

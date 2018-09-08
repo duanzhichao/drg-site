@@ -26,12 +26,13 @@ defmodule DrgSiteWeb.Router do
     get "/research", PageController, :research
     get "/edit", PageController, :edit
     get "/file", PageController, :file
-    get "/test", PageController, :test
+    get "/login", PageController, :login
   end
 
   scope "/api/", DrgSiteWeb do
     pipe_through :api
 
+    get "/download_key", PageController, :download_key
     post "/login", UserController, :login
 
     resources "/book", BookController, except: [:new, :edit]

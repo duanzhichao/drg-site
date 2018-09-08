@@ -38,7 +38,7 @@
             <button class="btn btn-default" id="classification_search_button">搜索</button>
           </div>
           <ul class="nav navbar-nav navbar-right" id="web_user_name">
-            <li><a href="/Technical_literature" style="color:#fff">登录</a></li>
+            <li><a href="/login" style="color:#fff">登录</a></li>
           </ul>
         </div>
       </nav>

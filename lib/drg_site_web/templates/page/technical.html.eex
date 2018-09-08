@@ -54,7 +54,7 @@
           <div class="ui grid">
             <div class="sixteen wide column">
               <div v-for="(item, index) in technical1">
-                <a style="font-weight:bold;font-size:12px;margin:7px;">{{item.file_name}}</a>
+                <a href="#" style="font-weight:bold;font-size:12px;margin:7px;" v-on:click="download(item.file_name)">{{item.file_name}}</a>
                 <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.doc_time}}</span>
                 <div class="ui divider" style="margin:7px;"></div>
               </div>
@@ -68,7 +68,7 @@
           <div class="ui grid">
             <div class="sixteen wide column">
               <div v-for="(item, index) in technical2">
-                <a style="font-weight:bold;font-size:12px;margin:7px;">{{item.file_name}}</a>
+                <a href="#" style="font-weight:bold;font-size:12px;margin:7px;" v-on:click="download(item.file_name)">{{item.file_name}}</a>
                 <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.doc_time}}</span>
                 <div class="ui divider" style="margin:7px;"></div>
               </div>
@@ -82,7 +82,7 @@
           <div class="ui grid">
             <div class="sixteen wide column">
               <div v-for="(item, index) in technical3">
-                <a style="font-weight:bold;font-size:12px;margin:7px;">{{item.file_name}}</a>
+                <a href="#" style="font-weight:bold;font-size:12px;margin:7px;" v-on:click="download(item.file_name)">{{item.file_name}}</a>
                 <span style="float:right;color:gray;font-size:12px;margin:7px;">{{item.doc_time}}</span>
                 <div class="ui divider" style="margin:7px;"></div>
               </div>
@@ -180,6 +180,18 @@ $(document).ready(function() {
           async: false,
           success: (res) => {
             this.technical4 = res.data
+          },
+          dataType: 'json'
+        });
+      },
+      download: function(filename) {
+        $.ajax({
+          type: "get",
+          url: `/api/download_key?filename=${filename}`,
+          async: false,
+          success: (res) => {
+            href = `http://210.75.201.204/files/download.jsp?filename=${encodeURIComponent(filename)}&&KEY=${res.key}`
+            window.open(href, '_blank')
           },
           dataType: 'json'
         });

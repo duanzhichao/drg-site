@@ -11,7 +11,7 @@
         <div class="ui grid">
           <div class="sixteen wide column">
             <div v-for="(item, index) in file">
-              <a style="font-weight:bold;font-size:11px;margin:5px;">{{item}}</a>
+              <a href="#" style="font-weight:bold;font-size:11px;margin:5px;" v-on:click="download(item)">{{item}}</a>
               <div class="ui divider" style="margin:5px;"></div>
             </div>
           </div>
@@ -43,6 +43,18 @@ $(document).ready(function() {
           success: (res) => {
             this.file = [res.data.notice, res.data.schedule, res.data.download]
             this.file = this.file.filter(x => x !== '')
+          },
+          dataType: 'json'
+        });
+      },
+      download: function(filename) {
+        $.ajax({
+          type: "get",
+          url: `/api/download_key?filename=${filename}`,
+          async: false,
+          success: (res) => {
+            href = `http://210.75.201.204/files/download.jsp?filename=${encodeURIComponent(filename)}&&KEY=${res.key}`
+            window.open(href, '_blank')
           },
           dataType: 'json'
         });

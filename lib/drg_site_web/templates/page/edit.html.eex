@@ -25,7 +25,7 @@
             <p><b v-for="doc_object in edit.doc_object">{{doc_object}}<br/></b></p>
             <!-- 内容 -->
             <div v-for="doc_content in edit.doc_content">
-              <p v-if="doc_content.indexOf('images_') < 0" style="line-height:25px;text-indent:2em;">{{doc_content}}</p>
+              <p v-if="doc_content.indexOf('.jpg') < 0 && doc_content.indexOf('.png') < 0" style="line-height:25px;text-indent:2em;">{{doc_content}}</p>
               <img v-else class="ui centered image" :src="'http://139.129.165.56/images/'+doc_content"><br />
             </div>
             <!-- 联系方式 -->
@@ -50,7 +50,7 @@
               下载文件:
               <br /><br />
               <p v-for="file in edit.file">
-                <a href="http://210.75.199.113/up_file/" target="_blank" onclick=""> {{file}}</a>
+                <a href="#" target="_blank" v-on:click="download(file)"> {{file}}</a>
                 <br />
               </p>
             </div>
@@ -85,6 +85,18 @@ $(document).ready(function() {
           async: false,
           success: (res) => {
             this.edit = res.data
+          },
+          dataType: 'json'
+        });
+      },
+      download: function(filename) {
+        $.ajax({
+          type: "get",
+          url: `/api/download_key?filename=${filename}`,
+          async: false,
+          success: (res) => {
+            href = `http://210.75.201.204/files/download.jsp?filename=${encodeURIComponent(filename)}&&KEY=${res.key}`
+            window.open(href, '_blank')
           },
           dataType: 'json'
         });
