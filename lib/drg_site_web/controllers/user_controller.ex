@@ -1,6 +1,7 @@
 defmodule DrgSiteWeb.UserController do
   use DrgSiteWeb, :controller
   alias DrgSite.User
+  alias DrgSite.Page
   alias Comeonin.Bcrypt
 
   plug :scrub_params, "user" when action in [:create, :update]
@@ -24,42 +25,48 @@ defmodule DrgSiteWeb.UserController do
     end
   end
 
-  def index(conn, %{"type" => type, "login" =>login, "username" => username, "password" => password, "email" => email, "phone" => phone, "skip" => skip}) do
-    cond do
-      login == "login" ->
-        if (Repo.get_by(DrgSite.User, username: username)) do
-          user = Repo.get_by(DrgSite.User, username: username)
-          db_password = user.hashpw
-          if (Bcrypt.checkpw(password, db_password)) do
-            user = [user]
-            render(conn, "index.json", user: user)
-          else
-            json conn, %{"login_fail" => true}
-          end
-        else
-          json conn, %{"login_fail" => true}
-        end
-      login == "userlist" ->
-        query=
-        from user in User,
-          where: user.type == ^type,
-          limit: 10,
-          offset: ^skip
-        user = Repo.all(query)
-        render(conn, "index.json", user: user)
-      login == "changepassword" ->
-        if (Repo.get_by(DrgSite.User, username: username)) do
-          user = Repo.get_by(DrgSite.User, username: username)
-          if (user.email == email and user.phone == phone) do
-            user = [user]
-            render(conn, "index.json", user: user)
-          else
-            json conn, %{"changepassword_fail" => true}
-          end
-        else
-          json conn, %{"changepassword_fail" => true}
-        end
-    end
+  def index(conn, %{"type" => type, "page" => page, "limit" => limit, "search" => search}) do
+    skip = Page.skip(page, limit)
+    query = from(p in User)|>where([p], p.type == ^type)
+    query =
+      case search do
+        "" -> query
+        _ ->
+          search = "%#{search}%"
+          from p in User, where: p.type == ^type and (like(p.username, ^search) or like(p.org_code, ^search) or like(p.org_name, ^search) or like(p.phone, ^search) or like(p.address, ^search) or like(p.person, ^search) or like(p.email, ^search))
+      end
+    count = query
+      |>select([p], count(p.id))
+      |>Repo.all
+      |>hd
+    [page_num, page_list, _count] = Page.page_list(page, count, limit)
+    user = query
+      |>limit([p], ^limit)
+      |>offset([p], ^skip)
+      |>Repo.all
+    render(conn, "index.json", user: user, page: page, page_list: page_list)
+    # cond do
+    #   login == "userlist" ->
+    #     query=
+    #     from user in User,
+    #       where: user.type == ^type,
+    #       limit: 10,
+    #       offset: ^skip
+    #     user = Repo.all(query)
+    #     render(conn, "index.json", user: user)
+    #   login == "changepassword" ->
+    #     if (Repo.get_by(DrgSite.User, username: username)) do
+    #       user = Repo.get_by(DrgSite.User, username: username)
+    #       if (user.email == email and user.phone == phone) do
+    #         user = [user]
+    #         render(conn, "index.json", user: user)
+    #       else
+    #         json conn, %{"changepassword_fail" => true}
+    #       end
+    #     else
+    #       json conn, %{"changepassword_fail" => true}
+    #     end
+    # end
   end
 
   def create(conn, %{"user" => user_params}) do

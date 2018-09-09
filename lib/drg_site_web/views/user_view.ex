@@ -5,8 +5,8 @@ defmodule DrgSiteWeb.UserView do
     %{data: render_one(user, DrgSiteWeb.UserView, "user.json"), login: login}
   end
 
-  def render("index.json", %{user: user}) do
-    %{data: render_many(user, DrgSiteWeb.UserView, "user.json")}
+  def render("index.json", %{user: user, page: page, page_list: page_list}) do
+    %{data: render_many(user, DrgSiteWeb.UserView, "user.json"), page: page, page_list: page_list}
   end
 
   def render("show.json", %{user: user}) do

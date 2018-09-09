@@ -1,28 +1,28 @@
 defmodule DrgSiteWeb.DocController do
   use DrgSiteWeb, :controller
   alias DrgSite.Doc
+  alias DrgSite.Page
 
-  def index(conn, %{"doc_type" => doc_type, "skip" => skip, "type" => type, "limit" => limit}) do
-    doc =
-      case type do
-        "query" ->
-          query = from doc in Doc,
-            where: doc.doc_type == ^doc_type,
-            order_by: [desc: doc.doc_time],
-            limit: ^limit,
-            offset: ^skip
-          Repo.all(query)
-        "count" ->
-          query = from doc in Doc,
-            where: doc.doc_type == ^doc_type
-          Repo.all(query)
-      end
-    render(conn, "index.json", doc: doc)
+  def index(conn, %{"doc_type" => doc_type, "limit" => limit}) do
+    %{"page" => page, "skip" => skip} = Map.merge(%{"page" => "-1", "skip" => "0"}, conn.params)
+    skip = if(page === "-1")do skip else Page.skip(page, limit) end
+    query = from(p in Doc)|>where([p], p.doc_type == ^doc_type)
+    count = query
+      |>select([p], count(p.id))
+      |>Repo.all
+      |>hd
+    [page_num, page_list, _count] = Page.page_list(page, count, limit)
+    doc = query
+      |>order_by([p], [asc: p.doc_time])
+      |>limit([p], ^limit)
+      |>offset([p], ^skip)
+      |>Repo.all
+    render(conn, "index.json", doc: doc, page: page, page_list: page_list)
   end
 
   def create(conn, %{"doc" => doc_params}) do
     changeset = Doc.changeset(%Doc{}, doc_params)
-
+    IO.inspect changeset
     case Repo.insert(changeset) do
       {:ok, doc} ->
         conn

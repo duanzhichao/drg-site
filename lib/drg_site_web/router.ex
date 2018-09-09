@@ -31,12 +31,16 @@ defmodule DrgSiteWeb.Router do
   scope "/admin/", DrgSiteWeb do
     pipe_through :browser # Use the default browser stack
     get "/", AdminController, :index
+    get "/user", AdminController, :user
+    get "/book", AdminController, :book
+    get "/doc", AdminController, :doc
   end
 
   scope "/api/", DrgSiteWeb do
     pipe_through :api
     get "/download_key", PageController, :download_key
     post "/login", UserController, :login
+    post "/image_upload", AdminController, :image_upload
     resources "/book", BookController, except: [:new, :edit]
     resources "/doc", DocController, except: [:new, :edit]
     resources "/technical_download", TechnicalDownloadController, except: [:new, :edit]

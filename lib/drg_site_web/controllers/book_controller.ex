@@ -4,23 +4,34 @@ defmodule DrgSiteWeb.BookController do
   alias DrgSite.Book
   alias DrgSite.Page
 
-  def index(conn, %{"book_type" => book_type, "type" => type, "limit" => limit}) do
+  def index(conn, %{"book_type" => book_type, "limit" => limit, "search" => search}) do
     %{"page" => page} = Map.merge(%{"page" => "1"}, conn.params)
     skip = Page.skip(page, limit)
-    query = from(p in Book)
-      |>where([p], p.type == ^book_type)
+    query = from(p in Book)|>where([p], p.type == ^book_type)
+    num = Repo.all(query|>order_by([p], [desc: p.num])|>limit([p], 1))
+    num =
+      case num do
+        [] -> 1
+        _ -> hd(num).num + 1
+      end
+    query =
+      case search do
+        "" -> query
+        _ ->
+          search = "%#{search}%"
+          from p in Book, where: p.type == ^book_type and (like(p.name, ^search) or like(p.author, ^search) or like(p.from, ^search))
+      end
     count = query
       |>select([p], count(p.id))
       |>Repo.all
       |>hd
     [page_num, page_list, _count] = Page.page_list(page, count, limit)
-
     book = query
+      |>order_by([p], [asc: p.num])
       |>limit([p], ^limit)
-      |> offset([p], ^skip)
-      |> order_by([p], [asc: p.num])
+      |>offset([p], ^skip)
       |>Repo.all
-    render(conn, "index.json", book: book, page: page, page_list: page_list)
+    render(conn, "index.json", book: book, page: page, page_list: page_list, num: num)
   end
 
   def create(conn, %{"book" => book_params}) do
@@ -65,6 +76,6 @@ defmodule DrgSiteWeb.BookController do
     # it to always work (and if it does not, it will raise).
     Repo.delete!(book)
 
-    send_resp(conn, :no_content, "")
+    send_resp(conn, :no_content, "test")
   end
 end

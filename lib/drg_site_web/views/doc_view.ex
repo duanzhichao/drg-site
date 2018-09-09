@@ -1,8 +1,8 @@
 defmodule DrgSiteWeb.DocView do
   use DrgSiteWeb, :view
 
-  def render("index.json", %{doc: doc}) do
-    %{data: render_many(doc, DrgSiteWeb.DocView, "doc.json")}
+  def render("index.json", %{doc: doc, page: page, page_list: page_list}) do
+    %{data: render_many(doc, DrgSiteWeb.DocView, "doc.json"), page: page, page_list: page_list}
   end
 
   def render("show.json", %{doc: doc}) do

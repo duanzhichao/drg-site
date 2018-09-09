@@ -1,9 +1,31 @@
 defmodule DrgSiteWeb.AdminController do
   use DrgSiteWeb, :controller
   plug :put_layout, "admin.html"
+  alias DrgSite.FileService
 
   def index(conn, _params) do
     render conn, "index.html"
+  end
+
+  def user(conn, _params) do
+    %{"page" => page, "type" => type, "search" => search} = Map.merge(%{"page" => "1", "type" => "1", "search" => ""}, conn.params)
+    render conn, "user.html", page: page, type: type, search: search
+  end
+
+  def book(conn, _params) do
+    %{"page" => page, "type" => type, "search" => search} = Map.merge(%{"page" => "1", "type" => "1", "search" => ""}, conn.params)
+    render conn, "book.html", page: page, type: type, search: search
+  end
+
+  def doc(conn, _params) do
+    %{"page" => page, "type" => type} = Map.merge(%{"page" => "1", "type" => "1"}, conn.params)
+    render conn, "doc.html", page: page, type: type
+  end
+
+  def image_upload(conn, _params) do
+    file_path = "/home/images/"
+    %{:path => file_path, :file_name => file_name, :file_size => file_size} = FileService.upload_file(file_path, conn.params["file"])
+    json conn, %{filename: file_name}
   end
 
   defp is_login(conn) do

@@ -1,0 +1,120 @@
+<div id="index_1">
+  <div class="ui big breadcrumb" style="background:#ffffff;">
+    <a class="section" href="/admin/">管理端</a>
+    <i class="right chevron icon divider"></i>
+    <div class="active section">用户管理</div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <div class="two wide column">
+      <div class="ui form">
+        <div class="field">
+          <select v-model="type" v-on:change="onchange()">
+            <option value="1">未通过</option>
+            <option value="2">已通过</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="four wide column">
+      <div class="ui icon input">
+        <input type="text" placeholder="输入任意内容搜索..." v-model="search">
+        <i class="inverted circular search link icon" v-on:click="onchange()"></i>
+      </div>
+    </div>
+    <div class="two wide column">
+      <%= if(@search != "")do %>
+        <a class="ui blue label"> {{search}} <i class="delete icon" v-on:click="clearSearch()"></i> </a>
+      <% end %>
+    </div>
+    <div class="eight wide column">
+    </div>
+  </div>
+  <table class="ui table">
+    <thead>
+      <tr class="center aligned">
+        <th class = "one wide">用户名</th>
+        <th class = "one wide">组织机构名称</th>
+        <th class = "one wide">组织机构代码</th>
+        <th class = "one wide">电子邮箱</th>
+        <th class = "one wide">联系人</th>
+        <th class = "one wide">联系电话</th>
+        <th class = "one wide">状态</th>
+        <th class = "one wide">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr v-for="user in users">
+          <td class = "center aligned">{{user.username}}</td>
+          <td class = "center aligned">{{user.org_name}}</td>
+          <td class = "center aligned">{{user.org_code}}</td>
+          <td class = "center aligned">{{user.email}}</td>
+          <td class = "center aligned">{{user.person}}</td>
+          <td class = "center aligned">{{user.phone}}</td>
+          <td class = "center aligned">
+            <span v-if="user.type == true">已通过</span>
+            <span v-else>未通过</span>
+          </td>
+          <td class = "center aligned">
+            <button v-if="user.type == false" class="ui green button">通过</button>
+            <button v-else class="ui disabled red button">通过</button>
+          </td>
+        </tr>
+    </tbody></table>
+    <div class="ui right floated pagination menu">
+      <a v-for="p in pages" v-bind:class="{'disabled item': p.page == page, 'item': p.page !== page}"
+        v-bind:href="generateUrl(p.page)">{{p.num}}</a>
+   </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  Vue.prototype.$ajax = $.ajax;
+  common = new Vue({
+    el: '#index_1',
+    data: {
+      users: [],
+      page: 1,
+      pages: [],
+      type: '<%=@type%>',
+      search: '<%=@search%>'
+    },
+    created: function () {
+      this.getUsers()
+    },
+    methods: {
+      clearSearch: function () {
+        const url = `/admin/user?page=<%=@page%>&type=${this.type}&search=`
+        window.location.href = url
+      },
+      onchange: function () {
+        const url = `/admin/user?page=<%=@page%>&type=${this.type}&search=${this.search}`
+        window.location.href = url
+      },
+      getUsers: function () {
+        let type = this.type
+        if (type === '1') {
+          type = false
+        } else {
+          type = true
+        }
+        $.ajax({
+          type: "get",
+          url: `/api/user?type=${type}&search=${this.search}&page=<%=@page%>&limit=10`,
+          async: false,
+          success: (res) => {
+            this.users = res.data
+            this.pages = res.page_list
+            this.page = res.page
+          },
+          dataType: 'json'
+        });
+      },
+      generateUrl: function(num) {
+        const url = `/admin/user?page=${num}`
+        return url
+      },
+    }
+  })
+})
+</script>

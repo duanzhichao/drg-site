@@ -23,8 +23,13 @@ defmodule DrgSite.Doc do
   end
 
   def changeset(%Doc{} = doc, attrs) do
+    attrs = add_time(attrs)
     doc
     |> cast(attrs, [:doc_title, :doc_time, :doc_number, :doc_from, :doc_type, :doc_object, :doc_content, :doc_contact, :doc_inscribe, :ishave_file, :file, :browse_volume, :up_user, :up_time])
-    |> validate_required([:doc_title, :doc_time, :doc_number, :doc_from, :doc_type, :doc_object, :doc_content, :doc_contact, :doc_inscribe, :ishave_file, :file, :browse_volume, :up_user, :up_time])
+    |> validate_required([:doc_title, :browse_volume, :up_user, :up_time])
+  end
+
+  defp add_time(attrs) do
+    Map.put(attrs, "up_time", DrgSite.Time.stime_local())
   end
 end
