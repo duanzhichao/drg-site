@@ -22,6 +22,11 @@ defmodule DrgSiteWeb.AdminController do
     render conn, "doc.html", page: page, type: type
   end
 
+  def download_record(conn, _params) do
+    %{"page" => page, "search" => search} = Map.merge(%{"page" => "1", "search" => ""}, conn.params)
+    render conn, "download_record.html", page: page, search: search
+  end
+
   def image_upload(conn, _params) do
     file_path = "/home/images/"
     %{:path => file_path, :file_name => file_name, :file_size => file_size} = FileService.upload_file(file_path, conn.params["file"])

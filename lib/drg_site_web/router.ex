@@ -34,6 +34,7 @@ defmodule DrgSiteWeb.Router do
     get "/user", AdminController, :user
     get "/book", AdminController, :book
     get "/doc", AdminController, :doc
+    get "/download_record", AdminController, :download_record
   end
 
   scope "/api/", DrgSiteWeb do
@@ -46,6 +47,7 @@ defmodule DrgSiteWeb.Router do
     resources "/technical_download", TechnicalDownloadController, except: [:new, :edit]
     resources "/data_download", DataDownloadController, except: [:new, :edit]
     resources "/user", UserController, except: [:new, :edit]
+    resources "/download_record", DownloadRecordController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.

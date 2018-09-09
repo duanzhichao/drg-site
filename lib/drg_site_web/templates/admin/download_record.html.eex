@@ -1,0 +1,87 @@
+<div id="index_1">
+  <div class="ui big breadcrumb" style="background:#ffffff;">
+    <a class="section" href="/admin/">管理端</a>
+    <i class="right chevron icon divider"></i>
+    <div class="active section">下载记录</div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <div class="four wide column">
+      <div class="ui icon input">
+        <input type="text" placeholder="输入任意内容搜索..." v-model="search">
+        <i class="inverted circular search link icon" v-on:click="onchange()"></i>
+      </div>
+    </div>
+    <div class="two wide column">
+      <%= if(@search != "")do %>
+        <a class="ui blue label"> {{search}} <i class="delete icon" v-on:click="clearSearch()"></i> </a>
+      <% end %>
+    </div>
+    <div class="eight wide column">
+    </div>
+  </div>
+  <table class="ui table">
+    <thead>
+      <tr class="center aligned">
+        <th class = "one wide">用户名</th>
+        <th class = "one wide">下载内容</th>
+        <th class = "one wide">下载时间</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr v-for="record in records">
+          <td class = "center aligned">{{record.username}}</td>
+          <td class = "center aligned">{{record.title}}</td>
+          <td class = "center aligned">{{record.time}}</td>
+        </tr>
+    </tbody></table>
+    <div class="ui right floated pagination menu">
+      <a v-for="p in pages" v-bind:class="{'disabled item': p.page == page, 'item': p.page !== page}"
+        v-bind:href="generateUrl(p.page)">{{p.num}}</a>
+   </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  Vue.prototype.$ajax = $.ajax;
+  common = new Vue({
+    el: '#index_1',
+    data: {
+      records: [],
+      page: 1,
+      pages: [],
+      search: '<%=@search%>'
+    },
+    created: function () {
+      this.getRecord()
+    },
+    methods: {
+      clearSearch: function () {
+        const url = `/admin/download_record?page=<%=@page%>&search=`
+        window.location.href = url
+      },
+      onchange: function () {
+        const url = `/admin/download_record?page=<%=@page%>&search=${this.search}`
+        window.location.href = url
+      },
+      getRecord: function () {
+        $.ajax({
+          type: "get",
+          url: `/api/download_record?search=${this.search}&page=<%=@page%>&limit=10`,
+          async: false,
+          success: (res) => {
+            this.records = res.data
+            this.pages = res.page_list
+            this.page = res.page
+          },
+          dataType: 'json'
+        });
+      },
+      generateUrl: function(num) {
+        const url = `/admin/download_record?page=${num}&search=${this.search}`
+        return url
+      },
+    }
+  })
+})
+</script>

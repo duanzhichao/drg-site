@@ -4,8 +4,8 @@ defmodule DrgSiteWeb.BookController do
   alias DrgSite.Book
   alias DrgSite.Page
 
-  def index(conn, %{"book_type" => book_type, "limit" => limit, "search" => search}) do
-    %{"page" => page} = Map.merge(%{"page" => "1"}, conn.params)
+  def index(conn, %{"book_type" => book_type, "limit" => limit}) do
+    %{"page" => page, "search" => search} = Map.merge(%{"page" => "1", "search" => ""}, conn.params)
     skip = Page.skip(page, limit)
     query = from(p in Book)|>where([p], p.type == ^book_type)
     num = Repo.all(query|>order_by([p], [desc: p.num])|>limit([p], 1))
