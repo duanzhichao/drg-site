@@ -40,7 +40,7 @@
             <a class="item" href="/admin/change_user">修改用户信息</a>
             <a class="item" href="/admin/data_manage/">培训资料管理</a>
             <a class="item" href="/admin/tech_manage">技术资料管理</a>
-            <a class="item">上传管理</a>
+            <a class="item" href="/admin/file_upload">上传文件</a>
           </div>
         </div>
         <div class="thirteen wide column" >

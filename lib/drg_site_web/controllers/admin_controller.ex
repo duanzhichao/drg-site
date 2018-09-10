@@ -41,6 +41,10 @@ defmodule DrgSiteWeb.AdminController do
     render conn, "tech_manage.html", page: page, type: type
   end
 
+  def file_upload(conn, _params) do
+    render conn, "file_upload.html"
+  end
+
   def image_upload(conn, _params) do
     file_path = "/home/images/"
     %{:path => file_path, :file_name => file_name, :file_size => file_size} = FileService.upload_file(file_path, conn.params["file"])
