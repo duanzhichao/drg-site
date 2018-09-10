@@ -36,6 +36,11 @@ defmodule DrgSiteWeb.AdminController do
     render conn, "data_manage.html", page: page, type: type
   end
 
+  def tech_manage(conn, _params) do
+    %{"page" => page, "type" => type} = Map.merge(%{"page" => "1", "type" => "1"}, conn.params)
+    render conn, "tech_manage.html", page: page, type: type
+  end
+
   def image_upload(conn, _params) do
     file_path = "/home/images/"
     %{:path => file_path, :file_name => file_name, :file_size => file_size} = FileService.upload_file(file_path, conn.params["file"])

@@ -76,10 +76,7 @@ $(document).ready(function() {
       tech: {title: '', notice: '', schedule: '', download: '', time: '', up_user: 'wqewq', up_time: 'wqewq'},
       page: 1,
       pages: [],
-      type: '<%=@type%>',
       addpage: false,
-      imagename: '',
-      types: ['工作动态', '国家卫计委文件', '国家人社部文件', '各省市文件', '绩效评价应用', '付费改革应用']
     },
     created: function () {
       this.getTechs()

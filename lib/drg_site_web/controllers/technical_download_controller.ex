@@ -4,7 +4,7 @@ defmodule DrgSiteWeb.TechnicalDownloadController do
   alias DrgSite.TechnicalDownload
   alias DrgSite.Page
 
-  def index(conn, %{"type" => type, "page" => page, "limit" => limit}) do
+  def index(conn, %{"type" => type, "limit" => limit}) do
     %{"page" => page, "search" => search, "skip" => skip} = Map.merge(%{"page" => "-1", "search" => "", "skip" => "0"}, conn.params)
     skip = if(page === "-1")do skip else Page.skip(page, limit) end
     query =

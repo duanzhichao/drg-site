@@ -1,0 +1,175 @@
+<div id="index_1">
+  <div class="ui big breadcrumb" style="background:#ffffff;">
+    <a class="section" href="/admin/">管理端</a>
+    <i class="right chevron icon divider"></i>
+    <div class="active section">技术资料管理</div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <div class="two wide column" v-if="addpage === false">
+      <div class="ui form">
+        <div class="field">
+          <select v-model="type" v-on:change="onchange()">
+            <option value="1">基础理论研究</option>
+            <option value="2">绩效评价研究</option>
+            <option value="3">付费研究</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="two wide column">
+      <button v-if="addpage === false" class="ui button" v-on:click="addPage('')">新建</button>
+      <button v-else class="ui button" v-on:click="addPage('')">返回</button>
+    </div>
+    <div class="two wide column">
+    </div>
+    <div class="six wide column">
+    </div>
+  </div>
+  <table class="ui table" v-if="addpage === false">
+    <thead>
+      <tr class="center aligned">
+        <th>文件名</th>
+        <th>类型</th>
+        <th>上传用户</th>
+        <th>上传时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr v-for="(tech, index) in techs">
+          <td class = "center aligned">{{tech.file_name}}</td>
+          <td class = "center aligned">{{tech.file_type}}</td>
+          <td class = "center aligned">{{tech.up_user}}</td>
+          <td class = "center aligned">{{tech.up_time}}</td>
+          <td class = "center aligned">
+            <button class="ui red button" v-on:click="del(tech.id)">删除</button>
+            <button class="ui green button" v-on:click="addPage(index)">修改</button>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <div class="ui right floated pagination menu" v-if="addpage === false">
+      <a v-for="p in pages" v-bind:class="{'disabled item': p.page == page, 'item': p.page !== page}"
+        v-bind:href="generateUrl(p.page)">{{p.num}}</a>
+  </div>
+  <div class="ui message segment" v-else>
+      <div class="ui labeled input">
+        <div class="ui label">文件名</div>
+        <input type="text" v-model="tech.file_name">
+      </div><br/><br/>
+      <div class="ui labeled input">
+        <div class="ui label">类&nbsp;&nbsp;&nbsp;&nbsp;型</div>
+        &nbsp;&nbsp;
+        <select v-model="tech.file_type">
+          <option v-for="t in types" v-bind:value="t">{{t}}</option>
+        </select>
+      </div><br/><br/>
+      <button class="ui blue button" v-on:click="submit()">确定</button>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  Vue.prototype.$ajax = $.ajax;
+  common = new Vue({
+    el: '#index_1',
+    data: {
+      techs: [],
+      id: null,
+      tech: {file_type: '基础理论研究', file_name: '', up_user: 'wqewq', up_time: 'wqewq'},
+      page: 1,
+      pages: [],
+      type: '<%=@type%>',
+      addpage: false,
+      imagename: '',
+      types: ['基础理论研究', '绩效评价研究', '付费研究']
+    },
+    created: function () {
+      this.getTechs()
+    },
+    methods: {
+      addPage: function (index) {
+        if (this.addpage) {
+          this.addpage = false
+        } else {
+          this.addpage = true
+        }
+        if (index !== '') {
+          this.tech = this.techs[index]
+          this.id = this.tech.id
+        } else {
+          this.tech = {file_type: '基础理论研究', file_name: '', up_user: 'wqewq', up_time: 'wqewq'}
+          this.id = null
+        }
+      },
+      onchange: function () {
+        const url = `/admin/tech_manage?page=<%=@page%>&type=${this.type}`
+        window.location.href = url
+      },
+      getTechs: function () {
+        $.ajax({
+          type: "get",
+          url: `/api/technical_download?type=${this.types[this.type - 1]}&page=<%=@page%>&limit=7`,
+          async: false,
+          success: (res) => {
+            this.techs = res.data
+            this.pages = res.page_list
+            this.page = res.page
+          },
+          dataType: 'json'
+        });
+      },
+      submit: function() {
+        if (this.id === null) {
+          $.ajax({
+            type: "post",
+            url: `/api/technical_download`,
+            data: { technical_download: this.tech },
+            async: false,
+            success: (res) => {
+              if( res.data !== {} ) {
+                alert('新建成功')
+                const url = `/admin/tech_manage?type=${this.type}`
+                window.location.href = url
+              }
+            },
+            dataType: 'json'
+          });
+        } else {
+          $.ajax({
+            type: "put",
+            url: `/api/technical_download/${this.id}`,
+            data: { technical_download: this.tech },
+            async: false,
+            success: (res) => {
+              if( res.data !== {} ) {
+                alert('修改成功')
+                const url = `/admin/tech_manage?type=${this.type}`
+                window.location.href = url
+              }
+            },
+            dataType: 'json'
+          });
+        }
+      },
+      del: function(id) {
+        $.ajax({
+          type: "delete",
+          url: `/api/technical_download/${id}`,
+          async: false,
+          success: (res) => {
+            alert('删除成功')
+            const url = `/admin/tech_manage?type=${this.type}`
+            window.location.href = url
+          },
+          dataType: 'json'
+        });
+      },
+      generateUrl: function(num) {
+        const url = `/admin/tech_manage?page=${num}&type=${this.type}`
+        return url
+      },
+    }
+  })
+})
+</script>

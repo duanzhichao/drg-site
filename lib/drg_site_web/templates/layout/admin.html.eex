@@ -39,7 +39,7 @@
             <a class="item" href="/admin/download_record">下载记录</a>
             <a class="item" href="/admin/change_user">修改用户信息</a>
             <a class="item" href="/admin/data_manage/">培训资料管理</a>
-            <a class="item">技术资料下载管理</a>
+            <a class="item" href="/admin/tech_manage">技术资料管理</a>
             <a class="item">上传管理</a>
           </div>
         </div>
