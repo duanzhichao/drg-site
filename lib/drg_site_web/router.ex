@@ -36,6 +36,7 @@ defmodule DrgSiteWeb.Router do
     get "/doc", AdminController, :doc
     get "/download_record", AdminController, :download_record
     get "/change_user", AdminController, :change_user
+    get "/data_manage", AdminController, :data_manage
   end
 
   scope "/api/", DrgSiteWeb do

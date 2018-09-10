@@ -2,18 +2,23 @@ defmodule DrgSiteWeb.DataDownloadController do
   use DrgSiteWeb, :controller
 
   alias DrgSite.DataDownload
+  alias DrgSite.Page
 
-  def index(conn, %{"skip" => skip, "type" => type, "limit" => limit}) do
-    data_download =
-    case type do
-      "query" ->  query = from data_download in DataDownload,
-                  order_by: [asc: data_download.time],
-                  limit: ^limit,
-                  offset: ^skip
-                Repo.all(query)
-      "count" -> Repo.all(from p in DataDownload, order_by: [desc: p.time])
-    end
-    render(conn, "index.json", data_download: data_download)
+  def index(conn, %{"type" => type, "page" => page, "limit" => limit}) do
+    %{"page" => page, "search" => search, "skip" => skip} = Map.merge(%{"page" => "-1", "search" => "", "skip" => "0"}, conn.params)
+    skip = if(page === "-1")do skip else Page.skip(page, limit) end
+    query = from(p in DataDownload)
+    count = query
+      |>select([p], count(p.id))
+      |>Repo.all
+      |>hd
+    [page_num, page_list, _count] = Page.page_list(page, count, limit)
+    data_download = query
+      |>order_by([p], [asc: p.time])
+      |>limit([p], ^limit)
+      |>offset([p], ^skip)
+      |>Repo.all
+    render(conn, "index.json", data_download: data_download, page: page, page_list: page_list)
   end
 
   def create(conn, %{"data_download" => data_download_params}) do

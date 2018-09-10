@@ -1,8 +1,8 @@
 defmodule DrgSiteWeb.TechnicalDownloadView do
   use DrgSiteWeb, :view
 
-  def render("index.json", %{technical_download: technical_download}) do
-    %{data: render_many(technical_download, DrgSiteWeb.TechnicalDownloadView, "technical_download.json")}
+  def render("index.json", %{technical_download: technical_download, page: page, page_list: page_list}) do
+    %{data: render_many(technical_download, DrgSiteWeb.TechnicalDownloadView, "technical_download.json"), page: page, page_list: page_list}
   end
 
   def render("show.json", %{technical_download: technical_download}) do

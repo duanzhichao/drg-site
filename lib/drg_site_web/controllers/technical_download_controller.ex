@@ -2,25 +2,27 @@ defmodule DrgSiteWeb.TechnicalDownloadController do
   use DrgSiteWeb, :controller
 
   alias DrgSite.TechnicalDownload
+  alias DrgSite.Page
 
-  def index(conn, %{"type" => type, "skip" => skip, "limit" => limit}) do
-    technical_download =
+  def index(conn, %{"type" => type, "page" => page, "limit" => limit}) do
+    %{"page" => page, "search" => search, "skip" => skip} = Map.merge(%{"page" => "-1", "search" => "", "skip" => "0"}, conn.params)
+    skip = if(page === "-1")do skip else Page.skip(page, limit) end
+    query =
       case type do
-        "" ->
-          query = from p in TechnicalDownload,
-            order_by: [desc: p.up_time],
-            limit: ^limit,
-            offset: ^skip
-          Repo.all(query)
-        _ ->
-          query = from p in TechnicalDownload,
-            where: p.file_type == ^type,
-            order_by: [desc: p.up_time],
-            limit: ^limit,
-            offset: ^skip
-          Repo.all(query)
+        "" -> from(p in TechnicalDownload)
+        _ -> from(p in TechnicalDownload)|>where([p], p.file_type == ^type)
       end
-    render(conn, "index.json", technical_download: technical_download)
+    count = query
+      |>select([p], count(p.id))
+      |>Repo.all
+      |>hd
+    [page_num, page_list, _count] = Page.page_list(page, count, limit)
+    technical_download = query
+      |>order_by([p], [asc: p.up_time])
+      |>limit([p], ^limit)
+      |>offset([p], ^skip)
+      |>Repo.all
+    render(conn, "index.json", technical_download: technical_download, page: page, page_list: page_list)
   end
 
   def create(conn, %{"technical_download" => technical_download_params}) do

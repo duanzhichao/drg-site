@@ -1,8 +1,8 @@
 defmodule DrgSiteWeb.DataDownloadView do
   use DrgSiteWeb, :view
 
-  def render("index.json", %{data_download: data_download}) do
-    %{data: render_many(data_download, DrgSiteWeb.DataDownloadView, "data_download.json")}
+  def render("index.json", %{data_download: data_download, page: page, page_list: page_list}) do
+    %{data: render_many(data_download, DrgSiteWeb.DataDownloadView, "data_download.json"), page: page, page_list: page_list}
   end
 
   def render("show.json", %{data_download: data_download}) do

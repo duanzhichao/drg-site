@@ -1,0 +1,170 @@
+<div id="index_1">
+  <div class="ui big breadcrumb" style="background:#ffffff;">
+    <a class="section" href="/admin/">管理端</a>
+    <i class="right chevron icon divider"></i>
+    <div class="active section">培训资料管理</div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="ui grid">
+    <div class="two wide column">
+      <button v-if="addpage === false" class="ui button" v-on:click="addPage()">新建</button>
+      <button v-else class="ui button" v-on:click="addPage()">返回</button>
+    </div>
+    <div class="two wide column">
+    </div>
+    <div class="six wide column">
+    </div>
+  </div>
+  <table class="ui table" v-if="addpage === false">
+    <thead>
+      <tr class="center aligned">
+        <th>课件标题</th>
+        <th>上传用户</th>
+        <th>下载文件</th>
+        <th>上传时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr v-for="(tech, index) in techs">
+          <td class = "center aligned">{{tech.title}}</td>
+          <td class = "center aligned">{{tech.up_user}}</td>
+          <td class = "center aligned">{{tech.download}}</td>
+          <td class = "center aligned">{{tech.up_time}}</td>
+          <td class = "center aligned">
+            <button class="ui red button" v-on:click="del(tech.id)">删除</button>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <div class="ui right floated pagination menu" v-if="addpage === false">
+      <a v-for="p in pages" v-bind:class="{'disabled item': p.page == page, 'item': p.page !== page}"
+        v-bind:href="generateUrl(p.page)">{{p.num}}</a>
+  </div>
+  <div class="ui message segment" v-else>
+      <div class="ui labeled input">
+        <div class="ui label">课件标题</div>
+        <input type="text" v-model="tech.title">
+      </div><br/><br/>
+      <div class="ui labeled input">
+        <div class="ui label">通知文件</div>
+        <input type="text" v-model="tech.notice">
+      </div><br/><br/>
+      <div class="ui labeled input">
+        <div class="ui label">日程文件</div>
+        <input type="text" v-model="tech.schedule">
+      </div><br/><br/>
+      <div class="ui labeled input">
+        <div class="ui label">下载课件</div>
+        <input type="text" v-model="tech.download">
+      </div><br/><br/>
+      <div class="ui labeled input">
+        <div class="ui label">发布日期</div>
+        <input type="text" v-model="tech.time">
+      </div><br/><br/>
+      <button class="ui blue button" v-on:click="submit()">确定</button>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  Vue.prototype.$ajax = $.ajax;
+  common = new Vue({
+    el: '#index_1',
+    data: {
+      techs: [],
+      id: null,
+      tech: {title: '', notice: '', schedule: '', download: '', time: '', up_user: 'wqewq', up_time: 'wqewq'},
+      page: 1,
+      pages: [],
+      type: '<%=@type%>',
+      addpage: false,
+      imagename: '',
+      types: ['工作动态', '国家卫计委文件', '国家人社部文件', '各省市文件', '绩效评价应用', '付费改革应用']
+    },
+    created: function () {
+      this.getTechs()
+    },
+    methods: {
+      addPage: function () {
+        if (this.addpage) {
+          this.addpage = false
+        } else {
+          this.addpage = true
+        }
+      },
+      getTechs: function () {
+        $.ajax({
+          type: "get",
+          url: `/api/data_download?type=&page=<%=@page%>&limit=7`,
+          async: false,
+          success: (res) => {
+            this.techs = res.data
+            this.pages = res.page_list
+            this.page = res.page
+          },
+          dataType: 'json'
+        });
+      },
+      submit: function() {
+        $.ajax({
+          type: "post",
+          url: `/api/data_download`,
+          data: { data_download: this.tech },
+          async: false,
+          success: (res) => {
+            if( res.data !== {} ) {
+              alert('新建成功')
+              const url = `/admin/data_manage/`
+              window.location.href = url
+            }
+          },
+          dataType: 'json'
+        });
+      },
+      del: function(id) {
+        $.ajax({
+          type: "delete",
+          url: `/api/data_download/${id}`,
+          async: false,
+          success: (res) => {
+            alert('删除成功')
+            const url = `/admin/data_manage/`
+            window.location.href = url
+          },
+          dataType: 'json'
+        });
+      },
+      generateUrl: function(num) {
+        const url = `/admin/data_manage?page=${num}`
+        return url
+      },
+      upload_button: function () {
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+        var a = this.imagename
+        if(['image/png', 'image/jpeg', 'image/jpg'].includes(this.file.type)){
+          xhr.upload.addEventListener("progress", this.uploadProgress, false);
+          fd.append('file', this.file);
+          xhr.open('POST', '/api/image_upload', false);
+          xhr.onreadystatechange = function () {
+              if(xhr.readyState == 4 && xhr.status == 200) {
+                a = eval('(' + xhr.responseText + ')').filename
+              }
+            }
+          xhr.send(fd);
+          this.imagename = a
+        } else {
+          alert("您选择的文件类型不正确")
+        }
+      },
+      file_upload: function (e) {
+        this.file = e.target.files[0]
+        $('#example3').progress({percent: 0});
+        $("#percent").css('width', '0%');
+        $("#percent").html('')
+        $("#table").css('display','none');
+      },
+    }
+  })
+})
+</script>
