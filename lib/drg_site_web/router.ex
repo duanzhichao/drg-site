@@ -39,10 +39,12 @@ defmodule DrgSiteWeb.Router do
     get "/data_manage", AdminController, :data_manage
     get "/tech_manage", AdminController, :tech_manage
     get "/file_upload", AdminController, :file_upload
+    get "/login", AdminController, :login
   end
 
   scope "/api/", DrgSiteWeb do
     pipe_through :api
+    get "/admin/logout", AdminController, :logout
     get "/download_key", PageController, :download_key
     post "/login", UserController, :login
     get "/validate_username", UserController, :validate_username

@@ -21,9 +21,9 @@
       <a class="item" href="/admin/"><h1 class="ui header">&nbsp;&nbsp;CN-DRGs网站管理系统</h1></a>
       <div class="right menu" style="margin-bottom:4px;margin-right:20px;">
           <div class="ui compact menu" style="margin-bottom:4px;margin-right:20px;">
-            <div class="ui dropdown item">dzc<i class="dropdown icon"></i>
+            <div class="ui dropdown item"><%= @user.username %><i class="dropdown icon"></i>
               <div class="menu">
-                <a class="item" href=""><div class="item">登出</div></a>
+                <a class="item" href="#" onclick="logout()"><div class="item">登出</div></a>
               </div>
             </div>
           </div>
@@ -60,4 +60,16 @@ $('.ui.dropdown')
     allowAdditions: true
   })
 ;
+function logout() {
+  $.ajax({
+    type: "get",
+    url: `/api/admin/logout`,
+    async: false,
+    success: (res) => {
+      window.location.href = '/admin/'
+    },
+    dataType: 'json'
+  });
+
+}
 </script>

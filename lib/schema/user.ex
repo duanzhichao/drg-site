@@ -2,6 +2,7 @@ defmodule DrgSite.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias DrgSite.User
+  alias DrgSite.Time
   alias Comeonin.Bcrypt
 
   schema "web_user" do
@@ -28,6 +29,7 @@ defmodule DrgSite.User do
   end
 
   defp password(attrs) do
+    attrs = Map.put(attrs, "time", Time.stime_local())
     case Map.get(attrs, "password") do
       nil -> attrs
       x -> Map.put(attrs, "hashpw", Bcrypt.hashpwsalt(x))

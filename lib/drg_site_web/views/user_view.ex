@@ -20,7 +20,6 @@ defmodule DrgSiteWeb.UserView do
   def render("user.json", %{user: user}) do
     %{id: user.id,
       username: user.username,
-      hashpw: user.hashpw,
       org_code: user.org_code,
       org_name: user.org_name,
       phone: user.phone,
@@ -28,7 +27,6 @@ defmodule DrgSiteWeb.UserView do
       person: user.person,
       time: user.time,
       email: user.email,
-      type: user.type,
-      admin: user.admin}
+      type: user.type}
   end
 end
