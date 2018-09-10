@@ -7,8 +7,8 @@
   <div class="ui divider"></div>
   <div class="ui grid">
     <div class="two wide column">
-      <button v-if="addpage === false" class="ui button" v-on:click="addPage()">新建</button>
-      <button v-else class="ui button" v-on:click="addPage()">返回</button>
+      <button v-if="addpage === false" class="ui button" v-on:click="addPage(null)">新建</button>
+      <button v-else class="ui button" v-on:click="addPage(null)">返回</button>
     </div>
     <div class="two wide column">
     </div>
@@ -33,6 +33,7 @@
           <td class = "center aligned">{{tech.up_time}}</td>
           <td class = "center aligned">
             <button class="ui red button" v-on:click="del(tech.id)">删除</button>
+            <button class="ui green button" v-on:click="addPage(index)">修改</button>
           </td>
         </tr>
     </tbody>
@@ -82,11 +83,23 @@ $(document).ready(function() {
       this.getTechs()
     },
     methods: {
-      addPage: function () {
+      addPage: function (index) {
         if (this.addpage) {
           this.addpage = false
         } else {
           this.addpage = true
+        }
+        if (this.addpage) {
+          this.addpage = false
+        } else {
+          this.addpage = true
+        }
+        if (index !== null) {
+          this.tech = this.techs[index]
+          this.id = this.tech.id
+        } else {
+          this.tech = {title: '', notice: '', schedule: '', download: '', time: '', up_user: 'wqewq', up_time: 'wqewq'}
+          this.id = null
         }
       },
       getTechs: function () {
@@ -103,20 +116,37 @@ $(document).ready(function() {
         });
       },
       submit: function() {
-        $.ajax({
-          type: "post",
-          url: `/api/data_download`,
-          data: { data_download: this.tech },
-          async: false,
-          success: (res) => {
-            if( res.data !== {} ) {
-              alert('新建成功')
-              const url = `/admin/data_manage/`
-              window.location.href = url
-            }
-          },
-          dataType: 'json'
-        });
+        if (this.id === null) {
+          $.ajax({
+            type: "post",
+            url: `/api/data_download`,
+            data: { data_download: this.tech },
+            async: false,
+            success: (res) => {
+              if( res.data !== {} ) {
+                alert('新建成功')
+                const url = `/admin/data_manage/`
+                window.location.href = url
+              }
+            },
+            dataType: 'json'
+          });
+        } else {
+          $.ajax({
+            type: "put",
+            url: `/api/data_download/${this.id}`,
+            data: { data_download: this.tech },
+            async: false,
+            success: (res) => {
+              if( res.data !== {} ) {
+                alert('新建成功')
+                const url = `/admin/data_manage/`
+                window.location.href = url
+              }
+            },
+            dataType: 'json'
+          });
+        }
       },
       del: function(id) {
         $.ajax({
