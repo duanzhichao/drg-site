@@ -37,7 +37,7 @@
             <a class="item" href="/admin/book">文献管理</a>
             <a class="item" href="/admin/doc">文档管理</a>
             <a class="item" href="/admin/download_record">下载记录</a>
-            <a class="item">修改用户信息</a>
+            <a class="item" href="/admin/change_user">修改用户信息</a>
             <a class="item">培训资料下载管理</a>
             <a class="item">技术资料下载管理</a>
             <a class="item">上传管理</a>

@@ -25,6 +25,16 @@ defmodule DrgSiteWeb.UserController do
     end
   end
 
+  def validate_username(conn, %{"username" => username}) do
+    user = Repo.get_by(User, username: username)
+    [user, ishave] =
+      case user do
+        nil -> [%User{}, false]
+        _ -> [user, true]
+      end
+    render(conn, "validate.json", user: user, ishave: ishave)
+  end
+
   def index(conn, %{"type" => type, "page" => page, "limit" => limit, "search" => search}) do
     skip = Page.skip(page, limit)
     query = from(p in User)|>where([p], p.type == ^type)
@@ -45,28 +55,6 @@ defmodule DrgSiteWeb.UserController do
       |>offset([p], ^skip)
       |>Repo.all
     render(conn, "index.json", user: user, page: page, page_list: page_list)
-    # cond do
-    #   login == "userlist" ->
-    #     query=
-    #     from user in User,
-    #       where: user.type == ^type,
-    #       limit: 10,
-    #       offset: ^skip
-    #     user = Repo.all(query)
-    #     render(conn, "index.json", user: user)
-    #   login == "changepassword" ->
-    #     if (Repo.get_by(DrgSite.User, username: username)) do
-    #       user = Repo.get_by(DrgSite.User, username: username)
-    #       if (user.email == email and user.phone == phone) do
-    #         user = [user]
-    #         render(conn, "index.json", user: user)
-    #       else
-    #         json conn, %{"changepassword_fail" => true}
-    #       end
-    #     else
-    #       json conn, %{"changepassword_fail" => true}
-    #     end
-    # end
   end
 
   def create(conn, %{"user" => user_params}) do

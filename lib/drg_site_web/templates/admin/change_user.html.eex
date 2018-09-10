@@ -1,0 +1,78 @@
+<div class="ui message segment" id="index_1">
+  <div class="ui grid">
+    <div class="one wide column"></div>
+    <div class="fourteen wide column">
+      <div class="ui labeled input">
+        <div class="ui label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</div>
+        <input type="text" v-model="user.username" v-on:change="validate()">
+        <span v-if="is_have === false">*输入的用户名不存在</span>
+      </div><br/><br/>
+      <div class="ui labeled input">
+        <div class="ui label">新&nbsp;&nbsp;密&nbsp;&nbsp;码</div>
+        <input type="password" v-model="user.password">
+      </div><br/><br/>
+      <div class="ui labeled input">
+        <div class="ui label">确认密码</div>
+        <input type="password" v-model="user.password2">
+        <span>{{info}}</span>
+      </div><br/><br/>
+      <button class="ui blue button" v-on:click="submit()">确定</button>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  Vue.prototype.$ajax = $.ajax;
+  common = new Vue({
+    el: '#index_1',
+    data: {
+      user: { username: '', password: '', password2: ''},
+      is_have: true,
+      id: null,
+      info: '',
+    },
+    created: function () {
+      // this.getDocs()
+    },
+    methods: {
+      validate: function () {
+        $.ajax({
+          type: "get",
+          url: `/api/validate_username?username=${this.user.username}`,
+          async: false,
+          success: (res) => {
+            this.is_have = res.ishave
+            this.id = res.data.id
+          },
+          dataType: 'json'
+        });
+      },
+      submit: function() {
+        if (this.is_have) {
+          if (this.user.password === this.user.password2) {
+            $.ajax({
+              type: 'put',
+              url: `/api/user/${this.id}`,
+              data: { user: this.user },
+              async: false,
+              success: (res) => {
+                if (res.data) {
+                  alert('修改成功')
+                  window.location.href = `/admin/change_user`
+                }
+              },
+              dataType: 'json'
+            });
+          } else {
+            this.info = '*两次密码输入不一致'
+          }
+        }
+      },
+      generateUrl: function(num) {
+        const url = `/admin/doc?page=${num}`
+        return url
+      },
+    }
+  })
+})
+</script>

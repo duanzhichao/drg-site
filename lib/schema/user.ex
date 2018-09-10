@@ -2,7 +2,7 @@ defmodule DrgSite.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias DrgSite.User
-  # alias Comeonin.Bcrypt
+  alias Comeonin.Bcrypt
 
   schema "web_user" do
     field :username, :string
@@ -21,8 +21,17 @@ defmodule DrgSite.User do
   end
 
   def changeset(%User{} = user, attrs) do
+    attrs = password(attrs)
     user
     |> cast(attrs, [:username, :hashpw, :org_code, :org_name, :phone, :address, :person, :time, :email, :type, :admin])
     |> validate_required([:username, :hashpw, :org_code, :org_name, :phone, :address, :person, :time, :email, :type, :admin])
   end
+
+  defp password(attrs) do
+    case Map.get(attrs, "password") do
+      nil -> attrs
+      x -> Map.put(attrs, "hashpw", Bcrypt.hashpwsalt(x))
+    end
+  end
+
 end

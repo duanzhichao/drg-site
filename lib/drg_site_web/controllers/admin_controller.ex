@@ -27,6 +27,10 @@ defmodule DrgSiteWeb.AdminController do
     render conn, "download_record.html", page: page, search: search
   end
 
+  def change_user(conn, _params) do
+    render conn, "change_user.html"
+  end
+
   def image_upload(conn, _params) do
     file_path = "/home/images/"
     %{:path => file_path, :file_name => file_name, :file_size => file_size} = FileService.upload_file(file_path, conn.params["file"])

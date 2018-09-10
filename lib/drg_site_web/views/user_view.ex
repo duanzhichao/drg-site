@@ -5,6 +5,10 @@ defmodule DrgSiteWeb.UserView do
     %{data: render_one(user, DrgSiteWeb.UserView, "user.json"), login: login}
   end
 
+  def render("validate.json", %{user: user, ishave: ishave}) do
+    %{data: render_one(user, DrgSiteWeb.UserView, "user.json"), ishave: ishave}
+  end
+
   def render("index.json", %{user: user, page: page, page_list: page_list}) do
     %{data: render_many(user, DrgSiteWeb.UserView, "user.json"), page: page, page_list: page_list}
   end

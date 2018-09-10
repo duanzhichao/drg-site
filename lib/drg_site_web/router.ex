@@ -35,12 +35,14 @@ defmodule DrgSiteWeb.Router do
     get "/book", AdminController, :book
     get "/doc", AdminController, :doc
     get "/download_record", AdminController, :download_record
+    get "/change_user", AdminController, :change_user
   end
 
   scope "/api/", DrgSiteWeb do
     pipe_through :api
     get "/download_key", PageController, :download_key
     post "/login", UserController, :login
+    get "/validate_username", UserController, :validate_username
     post "/image_upload", AdminController, :image_upload
     resources "/book", BookController, except: [:new, :edit]
     resources "/doc", DocController, except: [:new, :edit]
