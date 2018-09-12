@@ -1,4 +1,4 @@
-<div class="ui message segment" id="index_1">
+<div class="ui message segment" id="index_1" v-cloak>
   <div class="ui grid">
     <div class="one wide column"></div>
     <div class="fourteen wide column">
@@ -14,7 +14,7 @@
       <div class="ui labeled input">
         <div class="ui label">确认密码</div>
         <input type="password" v-model="user.password2">
-        <span>{{info}}</span>
+        <span style="color:#f84745"  v-cloak>{{info}}</span>
       </div><br/><br/>
       <button class="ui blue button" v-on:click="submit()">确定</button>
     </div>
@@ -48,8 +48,13 @@ $(document).ready(function() {
         });
       },
       submit: function() {
+        const regx =/^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{8,20}$/;
         if (this.is_have) {
-          if (this.user.password === this.user.password2) {
+          if (this.user.password !== this.user.password2) {
+            this.info = '*两次密码输入不一致'
+          } else if (this.user.password.match(regx) == null) {
+            this.info = '*密码必须包含数组和字母,长度不低于8位'
+          } else {
             $.ajax({
               type: 'put',
               url: `/api/user/${this.id}`,
@@ -63,8 +68,6 @@ $(document).ready(function() {
               },
               dataType: 'json'
             });
-          } else {
-            this.info = '*两次密码输入不一致'
           }
         }
       },
