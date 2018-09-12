@@ -76,7 +76,7 @@ $(document).ready(function() {
     data: {
       techs: [],
       id: null,
-      tech: {file_type: '基础理论研究', file_name: '', up_user: 'wqewq', up_time: 'wqewq'},
+      tech: {file_type: '基础理论研究', file_name: '', up_user: '<%=@user.username%>'},
       page: 1,
       pages: [],
       type: '<%=@type%>',
@@ -98,7 +98,7 @@ $(document).ready(function() {
           this.tech = this.techs[index]
           this.id = this.tech.id
         } else {
-          this.tech = {file_type: '基础理论研究', file_name: '', up_user: 'wqewq', up_time: 'wqewq'}
+          this.tech = {file_type: '基础理论研究', file_name: '', up_user: '<%=@user.username%>'}
           this.id = null
         }
       },

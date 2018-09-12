@@ -174,8 +174,8 @@ $(document).ready(function() {
     data: {
       docs: [],
       id: null,
-      docData: {doc_title: '', doc_time: '', doc_number: '', doc_from: '', doc_type: '工作动态', doc_object: '', doc_content: '', doc_contact: '', doc_inscribe: '', ishave_file: false, file: '', browse_volume: 0, up_user: '11'},
-      doc: {doc_title: '', doc_time: '', doc_number: [], doc_from: '', doc_type: '工作动态', doc_object: [], doc_content: [], doc_contact: [], doc_inscribe: [], ishave_file: false, file: [], browse_volume: 0, up_user: '11'},
+      docData: {doc_title: '', doc_time: '', doc_number: '', doc_from: '', doc_type: '工作动态', doc_object: '', doc_content: '', doc_contact: '', doc_inscribe: '', ishave_file: false, file: '', browse_volume: 0, up_user: '<%=@user.username%>'},
+      doc: {doc_title: '', doc_time: '', doc_number: [], doc_from: '', doc_type: '工作动态', doc_object: [], doc_content: [], doc_contact: [], doc_inscribe: [], ishave_file: false, file: [], browse_volume: 0, up_user: '<%=@user.username%>'},
       page: 1,
       pages: [],
       type: '<%=@type%>',

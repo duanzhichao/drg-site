@@ -42,7 +42,7 @@
       <a v-for="p in pages" v-bind:class="{'disabled item': p.page == page, 'item': p.page !== page}"
         v-bind:href="generateUrl(p.page)">{{p.num}}</a>
   </div>
-  <div class="ui message segment" v-else>
+  <div class="ui message segment" v-if="addpage">
       <div class="ui labeled input">
         <div class="ui label">课件标题</div>
         <input type="text" v-model="tech.title">
@@ -74,7 +74,7 @@ $(document).ready(function() {
     data: {
       techs: [],
       id: null,
-      tech: {title: '', notice: '', schedule: '', download: '', time: '', up_user: 'wqewq', up_time: 'wqewq'},
+      tech: {title: '', notice: '', schedule: '', download: '', time: '', up_user: '<%=@user.username%>'},
       page: 1,
       pages: [],
       addpage: false,
@@ -89,16 +89,11 @@ $(document).ready(function() {
         } else {
           this.addpage = true
         }
-        if (this.addpage) {
-          this.addpage = false
-        } else {
-          this.addpage = true
-        }
         if (index !== null) {
           this.tech = this.techs[index]
           this.id = this.tech.id
         } else {
-          this.tech = {title: '', notice: '', schedule: '', download: '', time: '', up_user: 'wqewq', up_time: 'wqewq'}
+          this.tech = {title: '', notice: '', schedule: '', download: '', time: '', up_user: '<%=@user.username%>'}
           this.id = null
         }
       },
