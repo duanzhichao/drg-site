@@ -23,6 +23,7 @@
           <div class="ui compact menu" style="margin-bottom:4px;margin-right:20px;">
             <div class="ui dropdown item"><%= @user.username %><i class="dropdown icon"></i>
               <div class="menu">
+                <a class="item" href="/"><div class="item">网站</div></a>
                 <a class="item" href="#" onclick="logout()"><div class="item">登出</div></a>
               </div>
             </div>
