@@ -28,8 +28,8 @@ defmodule DrgSiteWeb.PageController do
   end
 
   def research(conn, _params) do
-    %{"zhpage" => zhpage, "enpage" => enpage} = Map.merge(%{"zhpage" => "1", "enpage" => "1"}, conn.params)
-    render conn, "research.html", zhpage: zhpage, enpage: enpage
+    %{"zhpage" => zhpage, "enpage" => enpage, "search" => search} = Map.merge(%{"zhpage" => "1", "enpage" => "1", "search" => ""}, conn.params)
+    render conn, "research.html", zhpage: zhpage, enpage: enpage, search: search
   end
 
   def edit(conn, %{"type" => type, "id" => id}) do

@@ -5,17 +5,16 @@
     </div>
     <div class="twelve wide column">
       <div class="ui grid">
-        <div class="ten wide column">
+        <div class="eight wide column">
         </div>
         <div class="four wide column">
-          <input type="text" id="input_search" placeholder="搜索" name="input_search" class="form-control">
-          <button class="ui primary button">查找</button>
-          <button class="ui primary button">返回</button>
+          <div class="ui input"> <input type="text" placeholder="搜索..." v-model="search_input"> </div>
         </div>
-        <div class="two wide column">
+        <div class="four wide column">
+          <button class="ui primary button" v-on:click="search()">查找</button>
+          <button class="ui primary button" v-on:click="back()">返回</button>
         </div>
       </div>
-
       <div class="ui message segment">
         <div class="ui blue top attached label" style="height:40px;">
           <h3 style="line-height: 20px;float:left;">国内研究</h3>
@@ -140,16 +139,17 @@ $(document).ready(function() {
       enbook: [],
       enpages: [],
       enpage: 1,
+      search_input: '',
     },
     created: function () {
       this.getBook1()
       this.getBook2()
     },
     methods: {
-      getBook1: function (page) {
+      getBook1: function () {
         $.ajax({
           type: "get",
-          url: '/api/book?book_type=国内&type=query&limit=7&page=<%=@zhpage%>',
+          url: '/api/book?book_type=国内&type=query&limit=7&page=<%=@zhpage%>&search=<%=@search%>',
           async: false,
           success: (res) => {
             this.zhpages = res.page_list
@@ -159,10 +159,10 @@ $(document).ready(function() {
           dataType: 'json'
         });
       },
-      getBook2: function (page) {
+      getBook2: function () {
         $.ajax({
           type: "get",
-          url: '/api/book?book_type=国外&type=query&limit=7&page=<%=@enpage%>',
+          url: '/api/book?book_type=国外&type=query&limit=7&page=<%=@enpage%>&search=<%=@search%>',
           async: false,
           success: (res) => {
             this.enpages = res.page_list
@@ -172,14 +172,20 @@ $(document).ready(function() {
           dataType: 'json'
         });
       },
+      search: function () {
+        window.location.href = `/research?enpage=<%=@enpage%>&zhpage=<%=@zhpage%>&search=${this.search_input}`
+      },
+      back: function () {
+        window.location.href = `/research?enpage=1&zhpage=1&search=`
+      },
       generateUrl: function(num, type) {
         let url = '';
         if(this.page === parseInt(num)) {
           url = '###'
         } else if (type === 'zh') {
-          url = `/research?zhpage=${num}&enpage=<%=@enpage%>`
+          url = `/research?zhpage=${num}&enpage=<%=@enpage%>&search=<%=@search%>`
         } else if (type === 'en') {
-          url = `/research?enpage=${num}&zhpage=<%=@zhpage%>`
+          url = `/research?enpage=${num}&zhpage=<%=@zhpage%>&search=<%=@search%>`
         }
         return url
       },
