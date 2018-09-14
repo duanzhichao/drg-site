@@ -1,0 +1,202 @@
+<div class="ui grid" id="index_1" style="margin-top:5px;">
+  <div class="two wide column"></div>
+  <div class="twelve wide column">
+    <div class="ui success message" id = "mes" style="display:none;">
+      <div class="header" id = "mes_header"></div>
+      <p id = "mes_p"></p>
+    </div>
+    <div class="ui negative message" id = "error_mes" style="display:none;">
+      <div class="header" id = "error_mes_header"></div>
+      <p id = "error_mes_p"></p>
+    </div>
+    <div class="ui blue segment">
+      <form class="ui form">
+        <h4 class="ui dividing header">用户注册</h4>
+        <div class="field">
+          <label>用户名</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="text" v-model="user.username" v-on:change="validate()">
+            </div>
+            <div class="six wide field">
+              <span v-if="is_have">{{userInfo}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>组织机构名称</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="text" v-model="user.org_name">
+            </div>
+            <div class="six wide field">
+              <span v-if="errors.includes('org_name')">{{info}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>组织机构代码</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="text" v-model="user.org_code">
+            </div>
+            <div class="six wide field">
+              <span v-if="errors.includes('org_code')">{{info}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>密码</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="password" v-model="user.password">
+            </div>
+            <div class="six wide field">
+              <span v-if="errors.includes('password')">{{info}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>再次输入密码</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="password" v-model="user.password2">
+            </div>
+            <div class="six wide field">
+              <span v-if="errors.includes('password2')">{{info}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>详细地址</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="text" v-model="user.address">
+            </div>
+            <div class="six wide field">
+              <span v-if="errors.includes('address')">{{info}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>联系人</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="text" v-model="user.person">
+            </div>
+            <div class="six wide field">
+              <span v-if="errors.includes('person')">{{info}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>联系电话</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="text" v-model="user.phone">
+            </div>
+            <div class="six wide field">
+              <span v-if="errors.includes('phone')">{{info}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>电子邮箱</label>
+          <div class="fields">
+            <div class="ten wide field">
+              <input type="text" v-model="user.email">
+            </div>
+            <div class="six wide field">
+              <span v-if="errors.includes('email')">{{info}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="ui button" tabindex="0" v-on:click="submit()">确定</div>
+      </form>
+    </div>
+  </div>
+  <div class="two wide column"></div>
+</div>
+<script>
+$(document).ready(function() {
+  Vue.prototype.$ajax = $.ajax;
+  common = new Vue({
+    el: '#index_1',
+    data: {
+      // user: { username: '', password: '', password2: '', org_name: '', org_code: '', phone: '', address: '', person: '', email: '', type: false, admin: false},
+      user: { username: 'sewqeqwe', password: 'dzc944262316', password2: 'dzc944262316', org_name: 'wqeqw', org_code: 'qweqw', phone: 'wqeqw', address: 'qweqw', person: 'qweqw', email: 'duanzhichao@hitb.com.cn', type: false, admin: false},
+      is_have: false,
+      id: null,
+      info: '',
+      passInfo: '',
+      errors: [],
+      userInfo: ''
+    },
+    created: function () {
+      // this.getDocs()
+    },
+    methods: {
+      validate: function () {
+        $.ajax({
+          type: "get",
+          url: `/api/validate_username?username=${this.user.username}`,
+          async: false,
+          success: (res) => {
+            this.is_have = res.ishave
+            this.id = res.data.id
+            this.userInfo = '*输入的用户名已存在'
+          },
+          dataType: 'json'
+        });
+      },
+      submit: function() {
+        const passwordRegx = /^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{8,20}$/;
+        const usernameRegx = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){7,15}$/;
+        const emailRegx = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        const user = this.user;
+        delete user.type
+        delete user.admin
+        if (Object.values(user).includes('')) {
+          this.errors = Object.keys(user).filter(i => user[i] === '')
+          this.info = '*该项为必填项'
+        } else if (this.is_have){
+          this.is_have = res.ishave
+          this.userInfo = '*输入的用户名已存在'
+        } else if (this.user.username.match(usernameRegx) == null) {
+          this.is_have = res.ishave
+          this.userInfo = '*用户名必须以字母开头,由8-16位的数字或字母组成'
+        } else if (this.user.password !== this.user.password2) {
+          this.info = '*两次密码输入不一致'
+          this.errors = ['password2']
+        } else if (this.user.password.match(passwordRegx) == null) {
+          this.info = '*密码必须包含数组和字母,长度不低于8位'
+          this.errors = ['password']
+        } else if (this.user.email.match(emailRegx) == null) {
+          this.info = '*E-Mail地址输入有误'
+          this.errors = ['email']
+        } else {
+          $.ajax({
+            type: 'post',
+            url: `/api/user/`,
+            data: { user: this.user },
+            async: false,
+            success: (res) => {
+              if(res.data) {
+                $("#error_mes").css('display','none');
+                $("#mes_header").html('注册成功!');
+                $("#mes_p").html('1秒后页面将跳转至登录页!');
+                $("#mes").css('display','block');
+                setTimeout('reload()', 1000);
+              }
+            },
+            dataType: 'json'
+          });
+        }
+      },
+    }
+  })
+})
+function reload() {
+  window.location.href = `/technical`
+}
+</script>

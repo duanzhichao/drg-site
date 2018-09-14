@@ -45,6 +45,10 @@ defmodule DrgSiteWeb.PageController do
     render conn, "technical.html", user: is_login(conn)
   end
 
+  def regiester(conn, _params) do
+    render conn, "regiester.html"
+  end
+
   def download_key(conn, %{"filename" => filename}) do
     key = Download.getChecksum(filename)
     json conn, %{key: key}

@@ -26,6 +26,7 @@ defmodule DrgSiteWeb.Router do
     get "/edit", PageController, :edit
     get "/file", PageController, :file
     get "/login", PageController, :login
+    get "/regiester", PageController, :regiester
   end
 
   scope "/admin/", DrgSiteWeb do
