@@ -49,6 +49,10 @@ defmodule DrgSiteWeb.PageController do
     render conn, "regiester.html"
   end
 
+  def reset_password(conn, _params) do
+    render conn, "reset_password.html", user: is_login(conn)
+  end
+
   def download_key(conn, %{"filename" => filename}) do
     key = Download.getChecksum(filename)
     json conn, %{key: key}
@@ -60,8 +64,8 @@ defmodule DrgSiteWeb.PageController do
       nil -> %{login: false, username: ""}
       _ ->
         case user.login do
-          false -> %{login: false, username: ""}
-          true -> %{login: true, username: user.username}
+          false -> %{login: false, username: "", id: user.id}
+          true -> %{login: true, username: user.username, id: user.id}
         end
     end
   end

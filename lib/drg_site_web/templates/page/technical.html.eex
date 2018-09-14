@@ -135,9 +135,11 @@ $(document).ready(function() {
             data: { user: this.user },
             async: false,
             success: (res) => {
-              if(res.login){
+              if (res.login && res.data.update_pass === false) {
+                window.location.href = '/reset_password'
+              } else if (res.data.update_pass) {
                 window.location.href = "/technical"
-              }else{
+              } else {
                 alert('用户名密码错误')
               }
             },

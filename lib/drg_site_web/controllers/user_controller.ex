@@ -16,7 +16,10 @@ defmodule DrgSiteWeb.UserController do
       _ ->
         case Bcrypt.checkpw(password, user.hashpw) do
           true ->
-            conn = put_session(conn, :user, Map.put(user, :login, true))
+            case user.update_pass do
+              true -> conn = put_session(conn, :user, Map.put(user, :login, true))
+              _ -> conn = put_session(conn, :user, Map.put(user, :login, false))
+            end
             render(conn, "login.json", user: user, login: true)
           false ->
             conn = put_session(conn, :user, %{login: false, username: ""})
@@ -81,6 +84,7 @@ defmodule DrgSiteWeb.UserController do
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Repo.get!(User, id)
     changeset = User.changeset(user, user_params)
+    IO.inspect changeset
     case Repo.update(changeset) do
       {:ok, user} ->
         render(conn, "show.json", user: user)

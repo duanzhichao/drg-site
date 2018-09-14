@@ -123,8 +123,7 @@ $(document).ready(function() {
   common = new Vue({
     el: '#index_1',
     data: {
-      // user: { username: '', password: '', password2: '', org_name: '', org_code: '', phone: '', address: '', person: '', email: '', type: false, admin: false},
-      user: { username: 'sewqeqwe', password: 'dzc944262316', password2: 'dzc944262316', org_name: 'wqeqw', org_code: 'qweqw', phone: 'wqeqw', address: 'qweqw', person: 'qweqw', email: 'duanzhichao@hitb.com.cn', type: false, admin: false},
+      user: { username: '', password: '', password2: '', org_name: '', org_code: '', phone: '', address: '', person: '', email: '', type: false, admin: false},
       is_have: false,
       id: null,
       info: '',
@@ -154,8 +153,6 @@ $(document).ready(function() {
         const usernameRegx = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){7,15}$/;
         const emailRegx = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         const user = this.user;
-        delete user.type
-        delete user.admin
         if (Object.values(user).includes('')) {
           this.errors = Object.keys(user).filter(i => user[i] === '')
           this.info = '*该项为必填项'

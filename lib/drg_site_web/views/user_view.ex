@@ -27,6 +27,7 @@ defmodule DrgSiteWeb.UserView do
       person: user.person,
       time: user.time,
       email: user.email,
-      type: user.type}
+      type: user.type,
+      update_pass: user.update_pass}
   end
 end

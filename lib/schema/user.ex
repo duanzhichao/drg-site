@@ -17,6 +17,7 @@ defmodule DrgSite.User do
     field :email, :string
     field :type, :boolean, default: false
     field :admin, :boolean, default: false
+    field :update_pass, :boolean, default: false
 
     # timestamps
   end
@@ -24,8 +25,8 @@ defmodule DrgSite.User do
   def changeset(%User{} = user, attrs) do
     attrs = password(attrs)
     user
-    |> cast(attrs, [:username, :hashpw, :org_code, :org_name, :phone, :address, :person, :time, :email, :type, :admin])
-    |> validate_required([:username, :hashpw, :org_code, :org_name, :phone, :address, :person, :time, :email, :type, :admin])
+    |> cast(attrs, [:username, :hashpw, :org_code, :org_name, :phone, :address, :person, :time, :email, :type, :admin, :update_pass])
+    |> validate_required([:username, :hashpw, :phone, :address, :time, :email, :type, :admin, :update_pass])
   end
 
   defp password(attrs) do
