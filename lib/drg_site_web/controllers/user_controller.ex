@@ -16,14 +16,21 @@ defmodule DrgSiteWeb.UserController do
       _ ->
         case Bcrypt.checkpw(password, user.hashpw) do
           true ->
-            case user.update_pass do
-              true -> conn = put_session(conn, :user, Map.put(user, :login, true))
-              _ -> conn = put_session(conn, :user, Map.put(user, :login, false))
-            end
-            render(conn, "login.json", user: user, login: true)
+            [user, login] =
+              case user.update_pass do
+                true -> [Map.put(user, :login, true), true]
+                _ -> [Map.put(user, :login, false), false]
+              end
+            conn = put_session(conn, :user, user)
+            render(conn, "login.json", user: user, login: login)
           false ->
-            conn = put_session(conn, :user, %{login: false, username: ""})
-            render(conn, "login.json", user: user, login: false)
+            [user, login] =
+              case user.update_pass do
+                true -> [%{login: false, username: ""}, false]
+                _ -> [Map.put(user, :login, true), true]
+              end
+            conn = put_session(conn, :user, user)
+            render(conn, "login.json", user: user, login: login)
         end
     end
   end

@@ -60,8 +60,9 @@ defmodule DrgSiteWeb.PageController do
 
   defp is_login(conn) do
     user = get_session(conn, :user)
+    user = Map.merge(%{id: ""}, user)
     case user do
-      nil -> %{login: false, username: ""}
+      nil -> %{login: false, username: "", id: user.id}
       _ ->
         case user.login do
           false -> %{login: false, username: "", id: user.id}
