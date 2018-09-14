@@ -9,8 +9,6 @@
     <title>CN-DRGs--国家DRGs质控中心</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <script src="<%= static_path(@conn, "/css/jquery/jquery.min.js") %>"></script>
-    <script src="<%= static_path(@conn, "/css/bootstrap3/js/bootstrap.min.js") %>"></script>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap3/css/bootstrap.min.css") %>">
     <script src="<%= static_path(@conn, "/css/semantic-ui/semantic.min.js") %>"></script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/semantic-ui/semantic.min.css") %>">
     <script src="<%= static_path(@conn, "/css/vue.min.js") %>"></script>
@@ -18,30 +16,27 @@
 
   <body style="width:1260px;margin:0 auto;" >
     <!-- <div class="container" role="main"  style="background-image:url(<%= static_path(@conn, "/css/home_image/bg_img.png") %>);background-repeat:no-repeat;"> -->
-    <div class="container" role="main"  style="background:#bdd5e3">
-      <nav class="navbar navbar-default heder_search" style="margin:0px;border:none;">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav"></ul>
-          <div class="navbar-form navbar-left">
-            <div class="form-group input-group"><span class="input-group-addon" style="width:158px;">
-                <li class="dropdown fuzzy_search" style="list-style:none;"><a class="dropdown-toggle" id="fuzzy_head" href="#" data-toggle="dropdown">分类查询 <span class="caret"></span></a>
-                  <ul class="dropdown-menu fuzzy_classification" id="fuzzy_classification">
-                    <li><a>工作动态</a></li>
-                    <li><a>国家卫计委文件</a></li>
-                    <li><a>国家人社部文件</a></li>
-                    <li><a>绩效评价应用</a></li>
-                    <li><a>付费改革应用</a></li>
-                  </ul>
-                </li></span>
-              <input class="form-control" id="classification_search" type="text" placeholder="搜索" name="classification_search"/>
+    <div class="container" role="main"  style="background-image:url(<%= static_path(@conn, "/css/home_image/bg_img.png") %>);background-repeat:no-repeat;">
+      <div class="ui equal width padded grid">
+        <div class="row">
+          <div class="eight wide column">
+            <div class="ui action input">
+              <select class="ui compact selection dropdown" style="height:80%">
+                <option value="all">工作动态</option>
+                <option value="all">国家卫计委文件</option>
+                <option value="all">国家人社部文件</option>
+                <option value="all">绩效评价应用</option>
+                <option value="all">付费改革应用</option>
+              </select>
+              <input type="text" placeholder="Search...">
+              <div class="ui button">搜索</div>
             </div>
-            <button class="btn btn-default" id="classification_search_button">搜索</button>
           </div>
-          <ul class="nav navbar-nav navbar-right" id="web_user_name">
-            <li><a href="/login" style="color:#fff">登录</a></li>
-          </ul>
+          <div class="two wide column">
+
+          </div>
         </div>
-      </nav>
+      </div>
     <!--页头  -->
       <div name="header_bar">
         <div class="ui img">
